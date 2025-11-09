@@ -31,27 +31,35 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white shadow-lg py-2'
-          : 'bg-transparent py-4'
+          ? 'bg-white/95 backdrop-blur-md shadow-xl py-3'
+          : 'bg-transparent py-5'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="relative w-12 h-12">
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="relative w-14 h-14 transition-transform group-hover:scale-110">
               <Image
-                src="/img/logo/logo.png"
+                src="/img/logo/Logo.png"
                 alt="Hakuna Matata"
                 fill
-                className="object-contain"
+                className="object-contain drop-shadow-lg"
+                priority
               />
             </div>
-            <span className={`text-xl font-bold transition-colors ${
-              isScrolled ? 'text-gray-800' : 'text-white'
-            }`}>
-              Hakuna Matata
-            </span>
+            <div className="flex flex-col">
+              <span className={`text-xl font-bold transition-colors ${
+                isScrolled ? 'text-gray-800' : 'text-white'
+              }`}>
+                Hakuna Matata
+              </span>
+              <span className={`text-xs font-medium transition-colors ${
+                isScrolled ? 'text-emerald-600' : 'text-emerald-200'
+              }`}>
+                Veterinaria
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Menu */}
@@ -60,20 +68,26 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`font-medium transition-all hover:scale-110 ${
+                className={`relative font-semibold transition-all hover:scale-105 group ${
                   isScrolled
-                    ? 'text-gray-700 hover:text-green-600'
-                    : 'text-white hover:text-green-300'
+                    ? 'text-gray-700 hover:text-emerald-600'
+                    : 'text-white hover:text-emerald-200'
                 }`}
               >
                 {item.name}
+                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all group-hover:w-full ${
+                  isScrolled ? 'bg-emerald-600' : 'bg-white'
+                }`}></span>
               </Link>
             ))}
             <a
               href="tel:9242105259"
-              className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full transition-all hover:scale-105 shadow-lg"
+              className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-6 py-3 rounded-full transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 font-semibold flex items-center gap-2"
             >
-              Llamar Ahora
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+              </svg>
+              <span>Llamar Ahora</span>
             </a>
           </div>
 
@@ -107,24 +121,37 @@ export default function Navbar() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden mt-4 bg-white rounded-lg shadow-xl p-4"
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden mt-4 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-6 border border-gray-100"
           >
-            {navItems.map((item) => (
-              <Link
+            {navItems.map((item, index) => (
+              <motion.div
                 key={item.name}
-                href={item.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block py-3 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded transition-colors"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
               >
-                {item.name}
-              </Link>
+                <Link
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block py-3 px-4 text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all font-semibold"
+                >
+                  {item.name}
+                </Link>
+              </motion.div>
             ))}
-            <a
+            <motion.a
               href="tel:9242105259"
-              className="block mt-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full text-center transition-all"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="block mt-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-6 py-3 rounded-full text-center transition-all font-semibold shadow-lg flex items-center justify-center gap-2"
             >
-              Llamar Ahora
-            </a>
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+              </svg>
+              <span>Llamar Ahora</span>
+            </motion.a>
           </motion.div>
         )}
       </div>

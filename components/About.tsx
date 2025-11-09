@@ -32,37 +32,66 @@ export default function About() {
   ];
 
   return (
-    <section id="nosotros" ref={ref} className="py-20 bg-gradient-to-b from-white to-green-50">
-      <div className="container mx-auto px-4">
+    <section id="nosotros" ref={ref} className="py-20 bg-gradient-to-b from-white via-teal-50/20 to-emerald-50/30 relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-20 left-0 w-72 h-72 bg-emerald-200/20 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-0 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.5 }}
+            className="inline-block mb-4 px-6 py-2 bg-emerald-100 rounded-full"
+          >
+            <span className="text-sm font-bold text-emerald-700 flex items-center gap-2">
+              <span className="text-lg">💚</span>
+              Sobre Nosotros
+            </span>
+          </motion.div>
+          <h2 className="text-4xl md:text-6xl font-extrabold text-gray-800 mb-4">
             ¿Por qué elegir{' '}
-            <span className="text-green-600">Hakuna Matata?</span>
+            <span className="gradient-text-green">Hakuna Matata?</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Somos tu mejor opción para el cuidado integral de tu mascota
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+            Somos tu mejor opción para el cuidado integral de tu mascota con profesionalismo y amor
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {features.map((feature, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2"
+              className="group relative bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border border-gray-100 overflow-hidden"
             >
-              <div className="text-6xl mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600">{feature.description}</p>
+              {/* Gradient overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 to-teal-500/0 group-hover:from-emerald-500/5 group-hover:to-teal-500/5 transition-all duration-500"></div>
+              
+              <div className="relative z-10">
+                <motion.div
+                  className="text-6xl mb-4 inline-block"
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  {feature.icon}
+                </motion.div>
+                <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-emerald-600 transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              </div>
+              
+              {/* Decorative corner */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-emerald-100 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </motion.div>
           ))}
         </div>
@@ -71,30 +100,50 @@ export default function About() {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="bg-gradient-to-r from-green-500 to-teal-500 rounded-3xl p-10 md:p-16 text-white shadow-2xl"
+          className="relative bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 rounded-3xl p-10 md:p-16 text-white shadow-2xl overflow-hidden"
         >
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+          {/* Animated background patterns */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl animate-float"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl animate-float-delay"></div>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-12 items-center relative z-10">
             <div>
-              <h3 className="text-3xl md:text-4xl font-bold mb-6">
-                Nuestra Misión
-              </h3>
-              <p className="text-lg text-green-50 mb-6">
-                En Hakuna Matata, nos dedicamos a proporcionar atención
-                veterinaria excepcional con compasión y profesionalismo. Cada
-                mascota que cruza nuestra puerta recibe el mismo cuidado amoroso
-                que daríamos a nuestras propias mascotas.
-              </p>
-              <p className="text-lg text-green-50">
-                Nuestro compromiso es mantener a tu compañero peludo feliz,
-                saludable y lleno de vida. Porque en Hakuna Matata, no hay
-                preocupaciones cuando se trata de la salud de tu mascota.
-              </p>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.7 }}
+              >
+                <h3 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
+                  Nuestra Misión
+                </h3>
+                <p className="text-base md:text-lg text-emerald-50 mb-6 leading-relaxed">
+                  En Hakuna Matata, nos dedicamos a proporcionar atención
+                  veterinaria excepcional con compasión y profesionalismo. Cada
+                  mascota que cruza nuestra puerta recibe el mismo cuidado amoroso
+                  que daríamos a nuestras propias mascotas.
+                </p>
+                <p className="text-base md:text-lg text-emerald-50 leading-relaxed">
+                  Nuestro compromiso es mantener a tu compañero peludo feliz,
+                  saludable y lleno de vida. Porque en Hakuna Matata, no hay
+                  preocupaciones cuando se trata de la salud de tu mascota.
+                </p>
+              </motion.div>
             </div>
-            <div className="relative">
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-white/20 p-3 rounded-full">
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, x: 20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 0.9 }}
+            >
+              <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/30 shadow-2xl">
+                <div className="space-y-5">
+                  <motion.div
+                    className="flex items-center space-x-4 group cursor-pointer"
+                    whileHover={{ x: 5 }}
+                  >
+                    <div className="bg-white/20 p-3 rounded-full group-hover:bg-white/30 transition-all">
                       <svg
                         className="w-6 h-6"
                         fill="currentColor"
@@ -107,10 +156,13 @@ export default function About() {
                         />
                       </svg>
                     </div>
-                    <span className="text-lg">Atención personalizada</span>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-white/20 p-3 rounded-full">
+                    <span className="text-lg font-semibold">Atención personalizada</span>
+                  </motion.div>
+                  <motion.div
+                    className="flex items-center space-x-4 group cursor-pointer"
+                    whileHover={{ x: 5 }}
+                  >
+                    <div className="bg-white/20 p-3 rounded-full group-hover:bg-white/30 transition-all">
                       <svg
                         className="w-6 h-6"
                         fill="currentColor"
@@ -123,10 +175,13 @@ export default function About() {
                         />
                       </svg>
                     </div>
-                    <span className="text-lg">Tecnología de punta</span>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-white/20 p-3 rounded-full">
+                    <span className="text-lg font-semibold">Tecnología de punta</span>
+                  </motion.div>
+                  <motion.div
+                    className="flex items-center space-x-4 group cursor-pointer"
+                    whileHover={{ x: 5 }}
+                  >
+                    <div className="bg-white/20 p-3 rounded-full group-hover:bg-white/30 transition-all">
                       <svg
                         className="w-6 h-6"
                         fill="currentColor"
@@ -139,11 +194,11 @@ export default function About() {
                         />
                       </svg>
                     </div>
-                    <span className="text-lg">Precios accesibles</span>
-                  </div>
+                    <span className="text-lg font-semibold">Precios accesibles</span>
+                  </motion.div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>

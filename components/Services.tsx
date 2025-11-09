@@ -36,65 +36,92 @@ export default function Services() {
   };
 
   return (
-    <section id="servicios" ref={ref} className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="servicios" ref={ref} className="py-20 bg-gradient-to-b from-white via-emerald-50/30 to-white relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-100/30 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-100/30 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Nuestros <span className="text-green-600">Servicios</span>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.5 }}
+            className="inline-block mb-4 px-6 py-2 bg-emerald-100 rounded-full"
+          >
+            <span className="text-sm font-bold text-emerald-700 flex items-center gap-2">
+              <span className="text-lg">🐾</span>
+              Servicios Profesionales
+            </span>
+          </motion.div>
+          <h2 className="text-4xl md:text-6xl font-extrabold text-gray-800 mb-4">
+            Nuestros <span className="gradient-text-green">Servicios</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Ofrecemos una amplia gama de servicios para el bienestar de tu mascota
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+            Ofrecemos una amplia gama de servicios veterinarios de alta calidad para el bienestar integral de tu mascota
           </p>
         </motion.div>
 
         {loading ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-gray-200 animate-pulse rounded-2xl h-96"></div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse rounded-3xl h-96 shadow-lg"></div>
             ))}
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                className="group relative bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border border-gray-100"
               >
-                <div className="relative h-56 overflow-hidden">
+                {/* Hover gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 to-teal-500/0 group-hover:from-emerald-500/10 group-hover:to-teal-500/10 transition-all duration-500 z-10 pointer-events-none"></div>
+                
+                <div className="relative h-48 overflow-hidden">
                   {service.img ? (
                     <Image
                       src={service.img}
                       alt={service.title}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center">
-                      <span className="text-6xl">🐾</span>
+                    <div className="w-full h-full bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-500 flex items-center justify-center">
+                      <span className="text-7xl animate-bounce-slow">🐾</span>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <h3 className="absolute bottom-4 left-4 right-4 text-2xl font-bold text-white">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                  
+                  {/* Service icon badge */}
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg">
+                    <span className="text-2xl">✨</span>
+                  </div>
+                </div>
+                
+                <div className="p-6 relative z-20">
+                  <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-emerald-600 transition-colors">
                     {service.title}
                   </h3>
-                </div>
-                <div className="p-6">
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 leading-relaxed text-sm mb-4 line-clamp-3">
                     {service.description}
                   </p>
                   <a
                     href="#cita"
-                    className="inline-block mt-4 text-green-600 font-semibold hover:text-green-700 transition-colors"
+                    className="inline-flex items-center gap-2 text-emerald-600 font-bold hover:text-emerald-700 transition-all group/link"
                   >
-                    Agendar →
+                    <span>Agendar Ahora</span>
+                    <svg className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
                   </a>
                 </div>
               </motion.div>
@@ -106,16 +133,27 @@ export default function Services() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-center mt-16"
+          className="text-center mt-20"
         >
-          <a
-            href="https://wa.me/529242105259"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-green-500 hover:bg-green-600 text-white px-10 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 shadow-xl"
-          >
-            ¿Tienes dudas? Contáctanos por WhatsApp
-          </a>
+          <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-3xl p-8 md:p-12 shadow-2xl">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              ¿Tienes dudas sobre nuestros servicios?
+            </h3>
+            <p className="text-emerald-50 mb-6 max-w-2xl mx-auto">
+              Nuestro equipo está listo para ayudarte. Contáctanos por WhatsApp y te responderemos de inmediato.
+            </p>
+            <a
+              href="https://wa.me/529242105259"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-white text-emerald-600 px-10 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 shadow-2xl hover:shadow-white/50"
+            >
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+              </svg>
+              <span>Contáctanos por WhatsApp</span>
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>

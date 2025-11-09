@@ -62,4 +62,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   session: {
     strategy: 'jwt',
   },
+  secret: process.env.NEXTAUTH_SECRET || 'hakuna-matata-secret-key-2024',
+  debug: process.env.NODE_ENV === 'development',
 });
