@@ -55,11 +55,11 @@ export default function About() {
               Sobre Nosotros
             </span>
           </motion.div>
-          <h2 className="text-4xl md:text-6xl font-extrabold text-gray-800 mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-4">
             ¿Por qué elegir{' '}
             <span className="gradient-text-green">Hakuna Matata?</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-sm md:text-base text-gray-600 max-w-3xl mx-auto">
             Somos tu mejor opción para el cuidado integral de tu mascota con profesionalismo y amor
           </p>
         </motion.div>
@@ -115,16 +115,16 @@ export default function About() {
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.7 }}
               >
-                <h3 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
+                <h3 className="text-2xl md:text-3xl font-extrabold mb-6 leading-tight">
                   Nuestra Misión
                 </h3>
-                <p className="text-base md:text-lg text-emerald-50 mb-6 leading-relaxed">
+                <p className="text-sm md:text-base text-emerald-50 mb-6 leading-relaxed">
                   En Hakuna Matata, nos dedicamos a proporcionar atención
                   veterinaria excepcional con compasión y profesionalismo. Cada
                   mascota que cruza nuestra puerta recibe el mismo cuidado amoroso
                   que daríamos a nuestras propias mascotas.
                 </p>
-                <p className="text-base md:text-lg text-emerald-50 leading-relaxed">
+                <p className="text-sm md:text-base text-emerald-50 leading-relaxed">
                   Nuestro compromiso es mantener a tu compañero peludo feliz,
                   saludable y lleno de vida. Porque en Hakuna Matata, no hay
                   preocupaciones cuando se trata de la salud de tu mascota.
@@ -156,7 +156,7 @@ export default function About() {
                         />
                       </svg>
                     </div>
-                    <span className="text-lg font-semibold">Atención personalizada</span>
+                    <span className="text-base font-semibold">Atención personalizada</span>
                   </motion.div>
                   <motion.div
                     className="flex items-center space-x-4 group cursor-pointer"
@@ -175,7 +175,7 @@ export default function About() {
                         />
                       </svg>
                     </div>
-                    <span className="text-lg font-semibold">Tecnología de punta</span>
+                    <span className="text-base font-semibold">Tecnología de punta</span>
                   </motion.div>
                   <motion.div
                     className="flex items-center space-x-4 group cursor-pointer"
@@ -194,7 +194,7 @@ export default function About() {
                         />
                       </svg>
                     </div>
-                    <span className="text-lg font-semibold">Precios accesibles</span>
+                    <span className="text-base font-semibold">Precios accesibles</span>
                   </motion.div>
                 </div>
               </div>

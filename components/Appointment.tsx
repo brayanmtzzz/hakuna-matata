@@ -62,10 +62,10 @@ export default function Appointment() {
               Agenda tu Cita
             </span>
           </motion.div>
-          <h2 className="text-4xl md:text-6xl font-extrabold text-gray-800 mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-4">
             Agenda tu <span className="gradient-text-green">Cita</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-sm md:text-base text-gray-600 max-w-3xl mx-auto">
             Estamos aquí para cuidar de tu mascota. Contáctanos ahora y agenda tu cita de forma rápida y sencilla.
           </p>
         </motion.div>
@@ -100,7 +100,6 @@ export default function Appointment() {
                   value={formData.nombre}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none hover:border-gray-300"
-                  placeholder="Juan Pérez"
                 />
               </div>
 
@@ -115,7 +114,6 @@ export default function Appointment() {
                   value={formData.telefono}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none hover:border-gray-300"
-                  placeholder="924 123 4567"
                 />
               </div>
 
@@ -130,7 +128,6 @@ export default function Appointment() {
                   value={formData.mascota}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none hover:border-gray-300"
-                  placeholder="Firulais"
                 />
               </div>
 
@@ -138,21 +135,14 @@ export default function Appointment() {
                 <label className="block text-gray-700 font-semibold mb-2">
                   Servicio *
                 </label>
-                <select
+                <input
+                  type="text"
                   name="servicio"
                   required
                   value={formData.servicio}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none hover:border-gray-300"
-                >
-                  <option value="">Selecciona un servicio</option>
-                  <option value="Consulta General">Consulta General</option>
-                  <option value="Cirugía">Cirugía</option>
-                  <option value="Vacunación">Vacunación</option>
-                  <option value="Baño y Corte">Baño y Corte</option>
-                  <option value="Laboratorio">Laboratorio</option>
-                  <option value="Otro">Otro</option>
-                </select>
+                />
               </div>
 
               <div>
@@ -179,13 +169,12 @@ export default function Appointment() {
                   value={formData.mensaje}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all resize-none outline-none hover:border-gray-300"
-                  placeholder="Cuéntanos más detalles..."
                 ></textarea>
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-4 rounded-xl font-bold text-lg transition-all hover:scale-105 shadow-xl hover:shadow-emerald-500/50 flex items-center justify-center space-x-2"
+                className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-3 rounded-xl font-bold text-base transition-all hover:scale-105 shadow-xl hover:shadow-emerald-500/50 flex items-center justify-center space-x-2"
               >
                 <span>Agendar por WhatsApp</span>
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
