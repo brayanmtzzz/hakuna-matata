@@ -1,9 +1,10 @@
-import NextAuth from 'next-auth';
+import { getServerSession } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcrypt';
 import { prisma } from '@/lib/prisma';
+import type { NextAuthOptions } from 'next-auth';
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -12,44 +13,49 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         password: { label: 'Contraseña', type: 'password' },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
+        try {
+          if (!credentials?.email || !credentials?.password) {
+            return null;
+          }
+
+          const user = await prisma.user.findUnique({
+            where: { email: credentials.email as string },
+          });
+
+          if (!user) {
+            return null;
+          }
+
+          const isPasswordValid = await bcrypt.compare(
+            credentials.password as string,
+            user.password
+          );
+
+          if (!isPasswordValid) {
+            return null;
+          }
+
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.nombre,
+            role: user.role,
+          };
+        } catch (error) {
+          console.error('Error en authorize:', error);
           return null;
         }
-
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email as string },
-        });
-
-        if (!user) {
-          return null;
-        }
-
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password as string,
-          user.password
-        );
-
-        if (!isPasswordValid) {
-          return null;
-        }
-
-        return {
-          id: user.id,
-          email: user.email,
-          name: user.nombre,
-          role: user.role,
-        };
       },
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: any) {
       if (user) {
         token.role = user.role;
       }
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token }: any) {
       if (session.user) {
         session.user.role = token.role as string;
       }
@@ -58,10 +64,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   pages: {
     signIn: '/admin/login',
+    error: '/admin/login',
   },
   session: {
     strategy: 'jwt',
   },
   secret: process.env.NEXTAUTH_SECRET || 'hakuna-matata-secret-key-2024',
   debug: process.env.NODE_ENV === 'development',
-});
+};
+
+export const auth = () => getServerSession(authOptions);

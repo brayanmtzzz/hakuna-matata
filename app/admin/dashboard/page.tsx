@@ -125,40 +125,46 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
-      <header className="bg-white shadow-md">
+      <header className="bg-gradient-to-r from-emerald-600 to-teal-600 shadow-xl">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center space-x-3">
-              <div className="relative w-10 h-10">
+              <div className="relative w-12 h-12">
                 <Image
-                  src="/img/logo/logo.png"
+                  src="/img/logo/Logo.png"
                   alt="Logo"
                   fill
-                  className="object-contain"
+                  className="object-contain drop-shadow-lg"
                 />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-800">
+                <h1 className="text-xl md:text-2xl font-bold text-white">
                   Panel Administrativo
                 </h1>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-emerald-100">
                   Bienvenido, {session?.user?.name}
                 </p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3">
               <a
                 href="/"
                 target="_blank"
-                className="text-gray-600 hover:text-green-600 transition-colors"
+                className="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all font-semibold flex items-center gap-2"
               >
-                Ver sitio →
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                <span className="hidden sm:inline">Ver sitio</span>
               </a>
               <button
                 onClick={() => signOut({ callbackUrl: '/' })}
-                className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg transition-all"
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-all font-semibold flex items-center gap-2"
               >
-                Cerrar Sesión
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span className="hidden sm:inline">Cerrar Sesión</span>
               </button>
             </div>
           </div>
@@ -167,20 +173,39 @@ export default function DashboardPage() {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800">
-            Gestión de Servicios
-          </h2>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+              Gestión de Servicios
+            </h2>
+            <p className="text-gray-600 mt-1">Total: {services.length} servicios</p>
+          </div>
           <button
             onClick={handleOpenModal}
-            className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 shadow-lg"
+            className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105 shadow-lg flex items-center gap-2"
           >
-            + Nuevo Servicio
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            </svg>
+            Nuevo Servicio
           </button>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.length === 0 ? (
+          <div className="text-center py-20">
+            <div className="text-6xl mb-4">🐾</div>
+            <h3 className="text-2xl font-bold text-gray-800 mb-2">No hay servicios aún</h3>
+            <p className="text-gray-600 mb-6">Comienza agregando tu primer servicio</p>
+            <button
+              onClick={handleOpenModal}
+              className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-8 py-3 rounded-xl font-semibold transition-all hover:scale-105 shadow-lg"
+            >
+              + Agregar Servicio
+            </button>
+          </div>
+        ) : (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {services.map((service) => (
             <motion.div
               key={service.id}
@@ -235,7 +260,8 @@ export default function DashboardPage() {
               </div>
             </motion.div>
           ))}
-        </div>
+          </div>
+        )}
       </main>
 
       {/* Modal */}
@@ -246,9 +272,23 @@ export default function DashboardPage() {
             animate={{ opacity: 1, scale: 1 }}
             className="bg-white rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
           >
-            <h3 className="text-2xl font-bold text-gray-800 mb-6">
-              {editingService ? 'Editar Servicio' : 'Nuevo Servicio'}
-            </h3>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold text-gray-800">
+                {editingService ? 'Editar Servicio' : 'Nuevo Servicio'}
+              </h3>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowModal(false);
+                  setEditingService(null);
+                }}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-gray-700 font-semibold mb-2">
