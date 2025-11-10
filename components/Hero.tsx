@@ -19,7 +19,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600">
+    <section id="inicio" className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600">
       {/* Animated background shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-float"></div>
@@ -43,7 +43,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div className="container mx-auto px-4 py-20 relative z-10">
+      <div className="container mx-auto px-4 py-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
@@ -52,40 +52,20 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
             className="text-white"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1, duration: 0.5 }}
-              className="inline-block mb-4 px-6 py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30"
-            >
-              <span className="text-sm font-semibold flex items-center gap-2">
-                <span className="animate-pulse">✨</span>
-                Veterinaria Profesional
-              </span>
-            </motion.div>
-            
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight"
+              className="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight"
             >
               Hakuna Matata
-              <motion.span
-                className="block text-3xl md:text-4xl lg:text-5xl mt-2 text-yellow-300"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-              >
-                Sin Preocupaciones
-              </motion.span>
             </motion.h1>
             
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl md:text-2xl mb-4 text-emerald-50 font-medium"
+              className="text-xl md:text-2xl lg:text-3xl mb-3 text-yellow-300 font-medium"
             >
               Cuidado Profesional para tu Mascota
             </motion.p>
@@ -94,7 +74,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="text-base md:text-lg mb-8 text-emerald-100 max-w-xl"
+              className="text-sm md:text-base mb-6 text-white max-w-xl"
             >
               Servicios veterinarios de calidad con amor y dedicación. Tu mascota merece lo mejor, y en Hakuna Matata nos aseguramos de que reciba el cuidado excepcional que necesita.
             </motion.p>
@@ -103,22 +83,22 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row gap-3 mb-6"
             >
               <a
                 href="#cita"
-                className="group bg-white text-emerald-600 px-8 py-4 rounded-full font-bold hover:bg-emerald-50 transition-all hover:scale-105 shadow-2xl hover:shadow-emerald-500/50 flex items-center gap-2"
+                className="bg-white text-emerald-600 px-6 py-3 rounded-full font-bold text-sm md:text-base hover:bg-emerald-50 transition-all hover:scale-105 shadow-2xl hover:shadow-emerald-500/50 flex items-center justify-center gap-2 group"
               >
                 <span>Agenda tu Cita</span>
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </a>
               <a
                 href="tel:9242105259"
-                className="group bg-white/10 backdrop-blur-md border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-emerald-600 transition-all hover:scale-105 flex items-center gap-2"
+                className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-full font-bold text-sm md:text-base hover:bg-white hover:text-emerald-600 transition-all hover:scale-105 shadow-lg flex items-center justify-center gap-2"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
                 <span>924 210 5259</span>
@@ -130,19 +110,19 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
-              className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-white/20"
+              className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/20"
             >
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold mb-1">10+</div>
-                <div className="text-sm text-emerald-100">Años de Experiencia</div>
+                <div className="text-xl md:text-3xl font-bold mb-1">5.0</div>
+                <div className="text-xs md:text-sm text-white">Calificación</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold mb-1">1000+</div>
-                <div className="text-sm text-emerald-100">Mascotas Felices</div>
+                <div className="text-xl md:text-3xl font-bold mb-1">300+</div>
+                <div className="text-xs md:text-sm text-white">Mascotas Felices</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold mb-1">24/7</div>
-                <div className="text-sm text-emerald-100">Atención</div>
+                <div className="text-xl md:text-3xl font-bold mb-1">24/7</div>
+                <div className="text-xs md:text-sm text-white">Atención</div>
               </div>
             </motion.div>
           </motion.div>
@@ -185,35 +165,6 @@ export default function Hero() {
                   </motion.div>
                 )}
               </div>
-              
-              {/* Floating badges */}
-              <motion.div
-                className="absolute top-10 -left-10 bg-white rounded-2xl p-4 shadow-2xl"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="text-3xl">⭐</div>
-                  <div>
-                    <div className="text-sm font-bold text-gray-800">Calificación</div>
-                    <div className="text-lg font-bold text-emerald-600">5.0</div>
-                  </div>
-                </div>
-              </motion.div>
-              
-              <motion.div
-                className="absolute bottom-10 -right-10 bg-white rounded-2xl p-4 shadow-2xl"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="text-3xl">💚</div>
-                  <div>
-                    <div className="text-sm font-bold text-gray-800">Certificados</div>
-                    <div className="text-lg font-bold text-emerald-600">100%</div>
-                  </div>
-                </div>
-              </motion.div>
             </div>
           </motion.div>
         </div>

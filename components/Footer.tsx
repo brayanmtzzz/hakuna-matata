@@ -19,7 +19,7 @@ export default function Footer() {
           {/* Logo y descripción */}
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="relative w-14 h-14">
+              <div className="relative w-24 h-24">
                 <Image
                   src="/img/logo/Logo.png"
                   alt="Hakuna Matata"
@@ -33,7 +33,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
-              Veterinaria profesional dedicada al cuidado integral de tu mascota.
+              Veterinaria profesional dedicada al cuidado de tu mascota.
               Porque en Hakuna Matata, no hay preocupaciones.
             </p>
             <div className="flex space-x-4">
@@ -62,7 +62,7 @@ export default function Footer() {
 
           {/* Enlaces rápidos */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-emerald-400">Enlaces Rápidos</h3>
+            <h3 className="text-xl font-bold mb-4 text-emerald-400 pb-2 border-b-2 border-emerald-500/30 inline-block">Enlaces Rápidos</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#inicio" className="text-gray-400 hover:text-emerald-400 transition-colors hover:translate-x-1 inline-block">
@@ -89,7 +89,7 @@ export default function Footer() {
 
           {/* Contacto */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-emerald-400">Contacto</h3>
+            <h3 className="text-xl font-bold mb-4 text-emerald-400 pb-2 border-b-2 border-emerald-500/30 inline-block">Contacto</h3>
             <ul className="space-y-2 text-gray-400">
               <li className="flex items-start space-x-2">
                 <svg className="w-5 h-5 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -113,9 +113,6 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400">
             <p className="text-sm">© {currentYear} Hakuna Matata. Todos los derechos reservados.</p>
-            <p className="text-sm flex items-center gap-2">
-              Hecho con <span className="text-red-500 animate-pulse">❤️</span> para el cuidado de tu mascota
-            </p>
           </div>
         </div>
       </div>
