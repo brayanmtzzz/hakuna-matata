@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Heart, Stethoscope, Clock, Shield } from 'lucide-react';
 
 export default function About() {
   const ref = useRef(null);
@@ -10,24 +11,28 @@ export default function About() {
 
   const features = [
     {
-      icon: '🐕',
+      icon: Stethoscope,
       title: 'Atención Personalizada',
       description: 'Nos adaptamos a las necesidades de cada mascota',
+      color: 'from-emerald-500 to-teal-500',
     },
     {
-      icon: '👨‍⚕️',
+      icon: Shield,
       title: 'Servicio Confiable',
       description: 'Atención veterinaria en la que puedes confiar',
+      color: 'from-blue-500 to-cyan-500',
     },
     {
-      icon: '💚',
+      icon: Heart,
       title: 'Amor por los Animales',
       description: 'Tratamos a tu mascota como parte de nuestra familia',
+      color: 'from-pink-500 to-rose-500',
     },
     {
-      icon: '🕐',
+      icon: Clock,
       title: 'Disponibilidad',
       description: 'Horarios flexibles para tu comodidad',
+      color: 'from-violet-500 to-purple-500',
     },
   ];
 
@@ -77,11 +82,11 @@ export default function About() {
               
               <div className="relative z-10">
                 <motion.div
-                  className="text-6xl mb-4 inline-block"
-                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  className={`mb-6 inline-flex p-4 rounded-2xl bg-gradient-to-br ${feature.color} shadow-lg`}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  {feature.icon}
+                  <feature.icon className="w-8 h-8 text-white" strokeWidth={2} />
                 </motion.div>
                 <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-emerald-600 transition-colors">
                   {feature.title}
