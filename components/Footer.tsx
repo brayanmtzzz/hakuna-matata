@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Lottie from 'lottie-react';
-import pawsAnimation from '@/public/img/lottie/paws animation.json';
+import pawsAnimation from '@/public/img/lottie/paws animation vm.json';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
