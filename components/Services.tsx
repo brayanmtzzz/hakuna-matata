@@ -18,6 +18,7 @@ export default function Services() {
   const isInView = useInView(ref, { once: true });
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   useEffect(() => {
     fetchServices();
@@ -68,56 +69,96 @@ export default function Services() {
         </motion.div>
 
         {loading ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse rounded-3xl h-96 shadow-lg"></div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse rounded-2xl h-80 shadow-lg"></div>
             ))}
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border border-gray-100"
+                onMouseEnter={() => setHoveredCard(service.id)}
+                onMouseLeave={() => setHoveredCard(null)}
+                className="group relative overflow-hidden rounded-2xl h-80 bg-white shadow-[0_1px_1px_rgba(0,0,0,0.1),0_2px_2px_rgba(0,0,0,0.1),0_4px_4px_rgba(0,0,0,0.1),0_8px_8px_rgba(0,0,0,0.1),0_16px_16px_rgba(0,0,0,0.1)] hover:shadow-[0_2px_2px_rgba(0,0,0,0.12),0_4px_4px_rgba(0,0,0,0.12),0_8px_8px_rgba(0,0,0,0.12),0_16px_16px_rgba(0,0,0,0.12),0_32px_32px_rgba(0,0,0,0.12)] transition-all duration-700"
               >
-                {/* Hover gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 to-teal-500/0 group-hover:from-emerald-500/10 group-hover:to-teal-500/10 transition-all duration-500 z-10 pointer-events-none"></div>
-                
-                <div className="relative h-48 overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0 w-full h-full">
                   {service.img ? (
-                    <Image
-                      src={service.img}
-                      alt={service.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
+                    <motion.div
+                      className="relative w-full h-full"
+                      animate={{
+                        scale: hoveredCard === service.id ? 1.08 : 1,
+                      }}
+                      transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
+                    >
+                      <Image
+                        src={service.img}
+                        alt={service.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </motion.div>
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-500 flex items-center justify-center">
-                      <span className="text-7xl animate-bounce-slow">🐾</span>
-                    </div>
+                    <div className="w-full h-full bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-500"></div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                 </div>
-                
-                <div className="p-5 relative z-20">
-                  <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-emerald-600 transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed text-sm mb-3">
-                    {service.description}
-                  </p>
-                  <a
-                    href="#cita"
-                    className="inline-flex items-center gap-2 text-emerald-600 font-bold hover:text-emerald-700 transition-all group/link"
+
+                {/* Gradient Overlay */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/20"
+                  animate={{
+                    opacity: hoveredCard === service.id ? 1 : 0.8,
+                  }}
+                  transition={{ duration: 1.4, ease: [0.19, 1, 0.22, 1] }}
+                />
+
+                {/* Content */}
+                <div className="relative h-full flex flex-col justify-end p-6 md:p-8">
+                  <motion.div
+                    className="flex flex-col gap-4"
+                    animate={{
+                      y: hoveredCard === service.id ? 0 : 20,
+                    }}
+                    transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
                   >
-                    <span>Agendar Ahora</span>
-                    <svg className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </a>
+                    <h3 className="text-xl md:text-2xl font-bold text-white leading-tight">
+                      {service.title}
+                    </h3>
+                    
+                    <motion.div
+                      className="overflow-hidden"
+                      initial={false}
+                      animate={{
+                        height: hoveredCard === service.id ? 'auto' : 0,
+                        opacity: hoveredCard === service.id ? 1 : 0,
+                      }}
+                      transition={{
+                        duration: 0.7,
+                        ease: [0.19, 1, 0.22, 1],
+                        opacity: { delay: hoveredCard === service.id ? 0.1 : 0 }
+                      }}
+                    >
+                      <p className="text-white/90 text-base md:text-lg leading-relaxed mb-4">
+                        {service.description}
+                      </p>
+                      
+                      <a
+                        href="#cita"
+                        className="inline-flex items-center gap-2 bg-white text-emerald-600 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wide hover:bg-emerald-50 transition-colors"
+                      >
+                        <span>Agendar Ahora</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </a>
+                    </motion.div>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
