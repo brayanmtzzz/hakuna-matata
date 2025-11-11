@@ -194,7 +194,7 @@ export default function DashboardPage() {
         {/* Services Grid */}
         {services.length === 0 ? (
           <div className="text-center py-20">
-            <div className="text-6xl mb-4">🐾</div>
+            <div className="text-6xl mb-4"></div>
             <h3 className="text-2xl font-bold text-gray-800 mb-2">No hay servicios aún</h3>
             <p className="text-gray-600 mb-6">Comienza agregando tu primer servicio</p>
             <button
@@ -223,7 +223,7 @@ export default function DashboardPage() {
                   />
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center">
-                    <span className="text-6xl">🐾</span>
+                    <span className="text-6xl"></span>
                   </div>
                 )}
                 <div

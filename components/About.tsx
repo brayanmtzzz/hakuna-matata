@@ -10,14 +10,14 @@ export default function About() {
 
   const features = [
     {
-      icon: '🏥',
-      title: 'Instalaciones Modernas',
-      description: 'Equipamiento de última generación para el mejor cuidado',
+      icon: '🐕',
+      title: 'Atención Personalizada',
+      description: 'Nos adaptamos a las necesidades de cada mascota',
     },
     {
       icon: '👨‍⚕️',
-      title: 'Personal Calificado',
-      description: 'Veterinarios certificados con años de experiencia',
+      title: 'Servicio Confiable',
+      description: 'Atención veterinaria en la que puedes confiar',
     },
     {
       icon: '💚',
@@ -51,7 +51,7 @@ export default function About() {
             className="inline-block mb-4 px-6 py-2 bg-emerald-100 rounded-full"
           >
             <span className="text-sm font-bold text-emerald-700 flex items-center gap-2">
-              <span className="text-lg">💚</span>
+              <span className="text-lg"></span>
               Sobre Nosotros
             </span>
           </motion.div>
@@ -175,7 +175,7 @@ export default function About() {
                         />
                       </svg>
                     </div>
-                    <span className="text-base font-semibold">Tecnología de punta</span>
+                    <span className="text-base font-semibold">Experiencia y confianza</span>
                   </motion.div>
                   <motion.div
                     className="flex items-center space-x-4 group cursor-pointer"
