@@ -1,13 +1,13 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+type ParamsPromise = { params: Promise<{ id: string }> };
+
+export async function GET(request: NextRequest, context: ParamsPromise) {
   try {
+    const { id } = await context.params;
     const service = await prisma.service.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
     
     if (!service) {
@@ -28,13 +28,14 @@ export async function GET(
 }
 
 export async function PUT(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: ParamsPromise
 ) {
   try {
+    const { id } = await context.params;
     const body = await request.json();
     const service = await prisma.service.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         title: body.title,
         description: body.description,
@@ -53,12 +54,13 @@ export async function PUT(
 }
 
 export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: ParamsPromise
 ) {
   try {
+    const { id } = await context.params;
     await prisma.service.delete({
-      where: { id: params.id },
+      where: { id },
     });
     return NextResponse.json({ message: 'Servicio eliminado' });
   } catch (error) {
