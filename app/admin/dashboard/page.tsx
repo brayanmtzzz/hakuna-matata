@@ -125,7 +125,7 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
-      <header className="bg-gradient-to-r from-emerald-600 to-teal-600 shadow-xl">
+      <header className="bg-gradient-to-r from-[#5A9FBF] to-[#7FB3D5] shadow-xl">
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center space-x-3">
@@ -141,7 +141,7 @@ export default function DashboardPage() {
                 <h1 className="text-xl md:text-2xl font-bold text-white">
                   Panel Administrativo
                 </h1>
-                <p className="text-sm text-emerald-100">
+                <p className="text-sm text-white/90">
                   Bienvenido, {session?.user?.name}
                 </p>
               </div>
@@ -182,7 +182,7 @@ export default function DashboardPage() {
           </div>
           <button
             onClick={handleOpenModal}
-            className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105 shadow-lg flex items-center gap-2"
+            className="bg-gradient-to-r from-[#5A9FBF] to-[#7FB3D5] hover:from-[#154360] hover:to-[#5A9FBF] text-white px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105 shadow-lg flex items-center gap-2"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -199,7 +199,7 @@ export default function DashboardPage() {
             <p className="text-gray-600 mb-6">Comienza agregando tu primer servicio</p>
             <button
               onClick={handleOpenModal}
-              className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-8 py-3 rounded-xl font-semibold transition-all hover:scale-105 shadow-lg"
+              className="bg-gradient-to-r from-[#5A9FBF] to-[#7FB3D5] hover:from-[#154360] hover:to-[#5A9FBF] text-white px-8 py-3 rounded-xl font-semibold transition-all hover:scale-105 shadow-lg"
             >
               + Agregar Servicio
             </button>
@@ -222,7 +222,7 @@ export default function DashboardPage() {
                     className="object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center">
+                  <div className="w-full h-full bg-gradient-to-br from-[#7FB3D5] to-[#A9DFBF] flex items-center justify-center">
                     <span className="text-6xl"></span>
                   </div>
                 )}
@@ -301,7 +301,7 @@ export default function DashboardPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, title: e.target.value })
                   }
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7FB3D5] focus:border-transparent"
                   placeholder="Nombre del servicio"
                 />
               </div>
@@ -317,7 +317,7 @@ export default function DashboardPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, description: e.target.value })
                   }
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7FB3D5] focus:border-transparent resize-none"
                   placeholder="Describe el servicio..."
                 ></textarea>
               </div>
@@ -332,7 +332,7 @@ export default function DashboardPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, img: e.target.value })
                   }
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7FB3D5] focus:border-transparent"
                   placeholder="/img/servicios/imagen.jpg"
                 />
                 <p className="text-sm text-gray-500 mt-1">
@@ -348,7 +348,7 @@ export default function DashboardPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, is_active: e.target.checked })
                   }
-                  className="w-5 h-5 text-green-500 border-gray-300 rounded focus:ring-green-500"
+                  className="w-5 h-5 text-[#7FB3D5] border-gray-300 rounded focus:ring-[#7FB3D5]"
                 />
                 <label htmlFor="is_active" className="text-gray-700 font-semibold">
                   Servicio Activo
@@ -368,7 +368,7 @@ export default function DashboardPage() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-semibold transition-all"
+                  className="flex-1 bg-[#7FB3D5] hover:bg-[#5A9FBF] text-white py-3 rounded-lg font-semibold transition-all"
                 >
                   {editingService ? 'Actualizar' : 'Crear'}
                 </button>

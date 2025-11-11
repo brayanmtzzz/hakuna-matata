@@ -52,7 +52,7 @@ export default function LoginPage() {
 
   if (checking || status === 'loading') {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#F8F9F9] to-[#D5DBDB]">
         <div className="flex flex-col items-center">
           <Lottie
             animationData={animalCareLoading}
@@ -76,13 +76,13 @@ export default function LoginPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-emerald-900/50 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-[#154360]/50 backdrop-blur-sm"></div>
       </div>
 
       {/* Decorative elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-500/20 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl animate-float-delay"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[#7FB3D5]/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#A9DFBF]/20 rounded-full blur-3xl animate-float-delay"></div>
       </div>
 
       {/* Login Card */}
@@ -120,7 +120,7 @@ export default function LoginPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-emerald-600 font-semibold"
+              className="text-[#154360] font-semibold"
             >
               Panel de Administración
             </motion.p>
@@ -140,7 +140,7 @@ export default function LoginPage() {
 
             <div>
               <label className="block text-gray-700 font-semibold mb-2 flex items-center gap-2">
-                <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[#7FB3D5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
                 </svg>
                 Correo Electrónico
@@ -150,14 +150,14 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none"
+                className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-[#7FB3D5] focus:border-[#7FB3D5] transition-all outline-none"
                 placeholder="correo@ejemplo.com"
               />
             </div>
 
             <div>
               <label className="block text-gray-700 font-semibold mb-2 flex items-center gap-2">
-                <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[#7FB3D5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
                 Contraseña
@@ -167,7 +167,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none"
+                className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-[#7FB3D5] focus:border-[#7FB3D5] transition-all outline-none"
                 placeholder="••••••••"
               />
             </div>
@@ -175,7 +175,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-4 rounded-xl font-bold text-lg transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-xl hover:shadow-emerald-500/50 flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-[#5A9FBF] to-[#7FB3D5] hover:from-[#154360] hover:to-[#5A9FBF] text-white py-4 rounded-xl font-bold text-lg transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-xl hover:shadow-[#7FB3D5]/50 flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -199,7 +199,7 @@ export default function LoginPage() {
           <div className="mt-6 text-center">
             <a
               href="/"
-              className="text-gray-600 hover:text-emerald-600 transition-colors font-semibold flex items-center justify-center gap-2"
+              className="text-gray-600 hover:text-[#7FB3D5] transition-colors font-semibold flex items-center justify-center gap-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
