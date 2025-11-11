@@ -73,7 +73,7 @@ export default function Hero() {
                 onLoadingComplete={() => setImageLoaded(true)}
               />
               {/* Dark overlay for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
             </div>
             
             {/* Crossfade overlay */}
@@ -96,15 +96,16 @@ export default function Hero() {
                   quality={90}
                 />
                 {/* Dark overlay for better text readability */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
               </motion.div>
             </AnimatePresence>
           </>
         )}
       </div>
 
-      {/* Extra mobile overlay for better readability */}
-      <div className="absolute inset-0 bg-black/60 sm:hidden pointer-events-none"></div>
+      {/* Dark overlay applied globally */}
+      <div className="absolute inset-0 bg-black/60 pointer-events-none"></div>
+
 
       {/* Navigation Arrows */}
       {images.length > 1 && (
@@ -171,7 +172,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="text-2xl md:text-3xl lg:text-4xl mb-4 text-yellow-300 font-bold drop-shadow-lg"
+              className="text-2xl md:text-3xl lg:text-4xl mb-4 text-[#A9DFBF] font-bold drop-shadow-lg"
             >
               Cuidado Profesional para tu Mascota
             </motion.p>
@@ -193,7 +194,7 @@ export default function Hero() {
             >
               <a
                 href="#cita"
-                className="bg-white text-emerald-600 px-7 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-base md:text-lg hover:bg-emerald-50 transition-all hover:scale-105 shadow-2xl hover:shadow-emerald-500/50 flex items-center justify-center gap-2 group"
+                className="bg-white text-[#154360] px-7 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-base md:text-lg hover:bg-[#F8F9F9] transition-all hover:scale-105 shadow-2xl hover:shadow-[#7FB3D5]/50 flex items-center justify-center gap-2 group"
               >
                 <span>Agenda tu Cita</span>
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -202,7 +203,7 @@ export default function Hero() {
               </a>
               <a
                 href="tel:9242105259"
-                className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-7 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-base md:text-lg hover:bg-white hover:text-emerald-600 transition-all hover:scale-105 shadow-lg flex items-center justify-center gap-2"
+                className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-7 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-base md:text-lg hover:bg-white hover:text-[#154360] transition-all hover:scale-105 shadow-lg flex items-center justify-center gap-2"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />

@@ -39,10 +39,10 @@ export default function Appointment() {
   };
 
   return (
-    <section id="cita" ref={ref} className="py-20 bg-gradient-to-b from-emerald-50/30 via-white to-teal-50/20 relative overflow-hidden">
+    <section id="cita" ref={ref} className="py-20 bg-gradient-to-b from-[#F8F9F9] via-white to-[#F8F9F9] relative overflow-hidden">
       {/* Background decorations */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-200/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-[#A9DFBF]/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#7FB3D5]/10 rounded-full blur-3xl"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -55,9 +55,9 @@ export default function Appointment() {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-block mb-4 px-6 py-2 bg-emerald-100 rounded-full"
+            className="inline-block mb-4 px-6 py-2 bg-[#A9DFBF]/20 rounded-full"
           >
-            <span className="text-sm font-bold text-emerald-700 flex items-center gap-2">
+            <span className="text-sm font-bold text-[#154360] flex items-center gap-2">
               Reserva con Nosotros
             </span>
           </motion.div>
@@ -78,8 +78,8 @@ export default function Appointment() {
             className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 border border-gray-100"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="bg-emerald-100 p-3 rounded-full">
-                <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="bg-[#A9DFBF]/20 p-3 rounded-full">
+                <svg className="w-6 h-6 text-[#154360]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
@@ -98,7 +98,7 @@ export default function Appointment() {
                   required
                   value={formData.nombre}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none hover:border-gray-300"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#7FB3D5] focus:border-[#7FB3D5] transition-all outline-none hover:border-gray-300"
                 />
               </div>
 
@@ -112,7 +112,7 @@ export default function Appointment() {
                   required
                   value={formData.telefono}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none hover:border-gray-300"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#7FB3D5] focus:border-[#7FB3D5] transition-all outline-none hover:border-gray-300"
                 />
               </div>
 
@@ -126,7 +126,7 @@ export default function Appointment() {
                   required
                   value={formData.mascota}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none hover:border-gray-300"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#7FB3D5] focus:border-[#7FB3D5] transition-all outline-none hover:border-gray-300"
                 />
               </div>
 
@@ -140,7 +140,7 @@ export default function Appointment() {
                   required
                   value={formData.servicio}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none hover:border-gray-300"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#7FB3D5] focus:border-[#7FB3D5] transition-all outline-none hover:border-gray-300"
                 />
               </div>
 
@@ -154,7 +154,7 @@ export default function Appointment() {
                   required
                   value={formData.fecha}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none hover:border-gray-300"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#7FB3D5] focus:border-[#7FB3D5] transition-all outline-none hover:border-gray-300"
                 />
               </div>
 
@@ -167,13 +167,13 @@ export default function Appointment() {
                   rows={4}
                   value={formData.mensaje}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all resize-none outline-none hover:border-gray-300"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#7FB3D5] focus:border-[#7FB3D5] transition-all resize-none outline-none hover:border-gray-300"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-3 rounded-xl font-bold text-base transition-all hover:scale-105 shadow-xl hover:shadow-emerald-500/50 flex items-center justify-center space-x-2"
+                className="w-full bg-gradient-to-r from-[#5A9FBF] to-[#7FB3D5] hover:from-[#154360] hover:to-[#5A9FBF] text-white py-3 rounded-xl font-bold text-base transition-all hover:scale-105 shadow-xl hover:shadow-[#7FB3D5]/50 flex items-center justify-center space-x-2"
               >
                 <span>Agendar por WhatsApp</span>
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -191,7 +191,7 @@ export default function Appointment() {
             className="space-y-8"
           >
             {/* Información de contacto */}
-            <div className="bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 rounded-3xl p-8 text-white shadow-2xl border border-emerald-400/20">
+            <div className="bg-gradient-to-br from-[#5A9FBF] to-[#7FB3D5] rounded-3xl p-8 text-white shadow-2xl border border-[#A9DFBF]/20">
               <h3 className="text-2xl font-bold mb-6">Información de Contacto</h3>
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">

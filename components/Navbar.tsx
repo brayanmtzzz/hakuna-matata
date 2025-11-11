@@ -82,22 +82,22 @@ export default function Navbar() {
                   href={item.href}
                   className={`relative font-semibold transition-all hover:scale-105 group ${
                     isScrolled
-                      ? isActive ? 'text-emerald-600' : 'text-gray-700 hover:text-emerald-600'
-                      : isActive ? 'text-emerald-200' : 'text-white hover:text-emerald-200'
+                      ? isActive ? 'text-[#154360]' : 'text-gray-700 hover:text-[#7FB3D5]'
+                      : 'text-white hover:text-white'
                   }`}
                 >
                   {item.name}
                   <span className={`absolute -bottom-1 left-0 h-0.5 transition-all ${
                     isActive ? 'w-full' : 'w-0 group-hover:w-full'
                   } ${
-                    isScrolled ? 'bg-emerald-600' : 'bg-white'
+                    isScrolled ? 'bg-[#7FB3D5]' : 'bg-white'
                   }`}></span>
                 </Link>
               );
             })}
             <a
               href="tel:9242105259"
-              className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-6 py-3 rounded-full transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 font-semibold flex items-center gap-2"
+              className="bg-gradient-to-r from-[#5A9FBF] to-[#7FB3D5] hover:from-[#154360] hover:to-[#5A9FBF] text-white px-6 py-3 rounded-full transition-all hover:scale-105 shadow-lg hover:shadow-[#7FB3D5]/50 font-semibold flex items-center gap-2"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
@@ -149,7 +149,7 @@ export default function Navbar() {
                 <Link
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-3 px-4 text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all font-semibold"
+                  className="block py-3 px-4 text-gray-700 hover:text-[#154360] hover:bg-[#F8F9F9] rounded-xl transition-all font-semibold"
                 >
                   {item.name}
                 </Link>
@@ -160,7 +160,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="block mt-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-5 py-2.5 rounded-full text-center transition-all font-semibold shadow-lg flex items-center justify-center gap-2 text-sm"
+              className="block mt-4 bg-gradient-to-r from-[#5A9FBF] to-[#7FB3D5] hover:from-[#154360] hover:to-[#5A9FBF] text-white px-5 py-2.5 rounded-full text-center transition-all font-semibold shadow-lg flex items-center justify-center gap-2 text-sm"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />

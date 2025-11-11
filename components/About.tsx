@@ -14,33 +14,33 @@ export default function About() {
       icon: Stethoscope,
       title: 'Atención Personalizada',
       description: 'Nos adaptamos a las necesidades de cada mascota',
-      color: 'from-emerald-500 to-teal-500',
+      color: 'from-[#7FB3D5] to-[#A9DFBF]',
     },
     {
       icon: Shield,
       title: 'Servicio Confiable',
       description: 'Atención veterinaria en la que puedes confiar',
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-[#154360] to-[#7FB3D5]',
     },
     {
       icon: Heart,
       title: 'Amor por los Animales',
       description: 'Tratamos a tu mascota como parte de nuestra familia',
-      color: 'from-pink-500 to-rose-500',
+      color: 'from-[#A9DFBF] to-[#7FB3D5]',
     },
     {
       icon: Clock,
       title: 'Disponibilidad',
       description: 'Horarios flexibles para tu comodidad',
-      color: 'from-violet-500 to-purple-500',
+      color: 'from-[#7FB3D5] to-[#154360]',
     },
   ];
 
   return (
-    <section id="nosotros" ref={ref} className="py-20 bg-gradient-to-b from-white via-teal-50/20 to-emerald-50/30 relative overflow-hidden">
+    <section id="nosotros" ref={ref} className="py-20 bg-gradient-to-b from-white via-[#F8F9F9] to-white relative overflow-hidden">
       {/* Background decorations */}
-      <div className="absolute top-20 left-0 w-72 h-72 bg-emerald-200/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-0 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl"></div>
+      <div className="absolute top-20 left-0 w-72 h-72 bg-[#A9DFBF]/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-0 w-96 h-96 bg-[#7FB3D5]/10 rounded-full blur-3xl"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -53,9 +53,9 @@ export default function About() {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-block mb-4 px-6 py-2 bg-emerald-100 rounded-full"
+            className="inline-block mb-4 px-6 py-2 bg-[#A9DFBF]/20 rounded-full"
           >
-            <span className="text-sm font-bold text-emerald-700 flex items-center gap-2">
+            <span className="text-sm font-bold text-[#154360] flex items-center gap-2">
               Sobre Nosotros
             </span>
           </motion.div>
@@ -78,7 +78,7 @@ export default function About() {
               className="group relative bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border border-gray-100 overflow-hidden"
             >
               {/* Gradient overlay on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 to-teal-500/0 group-hover:from-emerald-500/5 group-hover:to-teal-500/5 transition-all duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[#7FB3D5]/0 to-[#A9DFBF]/0 group-hover:from-[#7FB3D5]/5 group-hover:to-[#A9DFBF]/5 transition-all duration-500"></div>
               
               <div className="relative z-10">
                 <motion.div
@@ -88,14 +88,14 @@ export default function About() {
                 >
                   <feature.icon className="w-8 h-8 text-white" strokeWidth={2} />
                 </motion.div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-emerald-600 transition-colors">
+                <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-[#154360] transition-colors">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">{feature.description}</p>
               </div>
               
               {/* Decorative corner */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-emerald-100 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#A9DFBF]/30 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </motion.div>
           ))}
         </div>
@@ -104,7 +104,7 @@ export default function About() {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="relative bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 rounded-3xl p-10 md:p-16 text-white shadow-2xl overflow-hidden"
+          className="relative bg-gradient-to-br from-[#5A9FBF] to-[#7FB3D5] rounded-3xl p-10 md:p-16 text-white shadow-2xl overflow-hidden"
         >
           {/* Animated background patterns */}
           <div className="absolute inset-0 opacity-10">
@@ -122,13 +122,13 @@ export default function About() {
                 <h3 className="text-2xl md:text-3xl font-extrabold mb-6 leading-tight">
                   Nuestra Misión
                 </h3>
-                <p className="text-sm md:text-base text-emerald-50 mb-6 leading-relaxed">
+                <p className="text-sm md:text-base text-white/90 mb-6 leading-relaxed">
                   En Hakuna Matata, nos dedicamos a proporcionar atención
                   veterinaria excepcional con compasión y profesionalismo. Cada
                   mascota que cruza nuestra puerta recibe el mismo cuidado amoroso
                   que daríamos a nuestras propias mascotas.
                 </p>
-                <p className="text-sm md:text-base text-emerald-50 leading-relaxed">
+                <p className="text-sm md:text-base text-white/90 leading-relaxed">
                   Nuestro compromiso es mantener a tu compañero peludo feliz,
                   saludable y lleno de vida. Porque en Hakuna Matata, no hay
                   preocupaciones cuando se trata de la salud de tu mascota.
