@@ -63,7 +63,7 @@ export default function Services() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-4">
             Nuestros <span className="gradient-text-green">Servicios</span>
           </h2>
-          <p className="text-sm md:text-base text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
             Ofrecemos una amplia gama de servicios veterinarios de alta calidad para el bienestar integral de tu mascota
           </p>
         </motion.div>
@@ -175,7 +175,7 @@ export default function Services() {
             <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
               ¿Tienes dudas sobre nuestros servicios?
             </h3>
-            <p className="text-base text-emerald-50 mb-6 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-emerald-50 mb-6 max-w-2xl mx-auto">
               Nuestro equipo está listo para ayudarte. Contáctanos por WhatsApp y te responderemos de inmediato.
             </p>
             <a

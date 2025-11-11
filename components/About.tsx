@@ -59,7 +59,7 @@ export default function About() {
             ¿Por qué elegir{' '}
             <span className="gradient-text-green">Hakuna Matata?</span>
           </h2>
-          <p className="text-sm md:text-base text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
             Somos tu mejor opción para el cuidado integral de tu mascota con profesionalismo y amor
           </p>
         </motion.div>

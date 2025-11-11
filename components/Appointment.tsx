@@ -59,13 +59,13 @@ export default function Appointment() {
           >
             <span className="text-sm font-bold text-emerald-700 flex items-center gap-2">
               <span className="text-lg"></span>
-              Reserva con nosotros
+              Reserva con Nosotros
             </span>
           </motion.div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-4">
             Agenda tu <span className="gradient-text-green">Cita</span>
           </h2>
-          <p className="text-sm md:text-base text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
             Estamos aquí para cuidar de tu mascota. Contáctanos ahora y agenda tu cita de forma rápida y sencilla.
           </p>
         </motion.div>
