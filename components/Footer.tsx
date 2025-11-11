@@ -21,7 +21,7 @@ export default function Footer() {
             <div className="flex items-center space-x-3 mb-4">
               <div className="relative w-24 h-24">
                 <Image
-                  src="/img/logo/Logo.png"
+                  src="/img/logo/LogoBlanco.png"
                   alt="Hakuna Matata"
                   fill
                   className="object-contain drop-shadow-lg"

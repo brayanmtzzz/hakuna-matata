@@ -61,7 +61,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center group">
             <div className="relative w-24 h-24 transition-transform group-hover:scale-110">
               <Image
-                src="/img/logo/Logo.png"
+                src={isScrolled ? "/img/logo/Logo.png" : "/img/logo/LogoBlanco.png"}
                 alt="Hakuna Matata"
                 fill
                 className="object-contain drop-shadow-lg"
