@@ -51,7 +51,6 @@ export default function About() {
             className="inline-block mb-4 px-6 py-2 bg-emerald-100 rounded-full"
           >
             <span className="text-sm font-bold text-emerald-700 flex items-center gap-2">
-              <span className="text-lg"></span>
               Sobre Nosotros
             </span>
           </motion.div>
