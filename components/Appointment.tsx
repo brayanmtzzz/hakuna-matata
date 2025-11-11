@@ -59,7 +59,7 @@ export default function Appointment() {
           >
             <span className="text-sm font-bold text-emerald-700 flex items-center gap-2">
               <span className="text-lg"></span>
-              Agenda tu Cita
+              Reserva con nosotros
             </span>
           </motion.div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-4">
