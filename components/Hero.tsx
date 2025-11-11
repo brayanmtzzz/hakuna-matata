@@ -1,62 +1,165 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import dynamic from 'next/dynamic';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
-
 export default function Hero() {
-  const [animationData, setAnimationData] = useState(null);
+  const [images, setImages] = useState<string[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
-    // Load Lottie animation
-    fetch('/img/lottie/paws animation.json')
-      .then(res => res.json())
-      .then(data => setAnimationData(data))
-      .catch(err => console.error('Error loading animation:', err));
+    // Fetch images from API
+    const loadImages = async () => {
+      try {
+        const res = await fetch('/api/hero-images');
+        const data = await res.json();
+        if (data.images && data.images.length > 0) {
+          setImages(data.images);
+          setIsLoading(false);
+        } else {
+          setIsLoading(false);
+        }
+      } catch (err) {
+        console.error('Error loading hero images:', err);
+        setIsLoading(false);
+      }
+    };
+    
+    loadImages();
   }, []);
 
+  useEffect(() => {
+    // Auto-advance carousel
+    if (images.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+      }, 5000); // Change image every 5 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [images.length]);
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const goToPrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
   return (
-    <section id="inicio" className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600">
-      {/* Animated background shapes */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-float-delay"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-yellow-300/10 rounded-full blur-3xl animate-float-slow"></div>
-        
-        {/* Floating paw prints */}
-        <motion.div
-          className="absolute top-32 right-1/4 text-white/20 text-6xl"
-          animate={{ y: [0, -30, 0], rotate: [0, 10, 0] }}
-          transition={{ duration: 4, repeat: Infinity }}
-        >
-          🐾
-        </motion.div>
-        <motion.div
-          className="absolute bottom-32 left-1/4 text-white/20 text-5xl"
-          animate={{ y: [0, 30, 0], rotate: [0, -10, 0] }}
-          transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-        >
-          🐾
-        </motion.div>
+    <section id="inicio" className="relative h-screen w-full overflow-hidden bg-black">
+      {/* Image Carousel Background */}
+      <div className="absolute inset-0 w-full h-full">
+        {!isLoading && images.length > 0 && (
+          <>
+            {/* Base image - always visible */}
+            <div className="absolute inset-0 w-full h-full">
+              <Image
+                src={images[currentIndex]}
+                alt={`Hero image ${currentIndex + 1}`}
+                fill
+                priority
+                className="object-cover"
+                sizes="100vw"
+                quality={90}
+                onLoadingComplete={() => setImageLoaded(true)}
+              />
+              {/* Dark overlay for better text readability */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+            </div>
+            
+            {/* Crossfade overlay */}
+            <AnimatePresence initial={false}>
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.8, ease: 'easeInOut' }}
+                className="absolute inset-0 w-full h-full"
+              >
+                <Image
+                  src={images[currentIndex]}
+                  alt={`Hero image ${currentIndex + 1}`}
+                  fill
+                  priority={currentIndex === 0}
+                  className="object-cover"
+                  sizes="100vw"
+                  quality={90}
+                />
+                {/* Dark overlay for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+              </motion.div>
+            </AnimatePresence>
+          </>
+        )}
       </div>
 
-      <div className="container mx-auto px-4 py-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
+      {/* Navigation Arrows */}
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={goToPrev}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
+            aria-label="Previous image"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={goToNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
+            aria-label="Next image"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </>
+      )}
+
+      {/* Carousel Indicators */}
+      {images.length > 1 && (
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`transition-all rounded-full focus:outline-none focus:ring-2 focus:ring-white/50 ${
+                index === currentIndex
+                  ? 'w-8 h-3 bg-white'
+                  : 'w-3 h-3 bg-white/50 hover:bg-white/70'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Content Overlay */}
+      <div className="container mx-auto px-4 py-8 relative z-10 h-full flex items-center">
+        <div className="w-full max-w-4xl">
+          {/* Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: (!isLoading && imageLoaded) ? 1 : 0, y: (!isLoading && imageLoaded) ? 0 : 30 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="text-white"
           >
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight"
+              transition={{ delay: 0.3 }}
+              className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 leading-tight drop-shadow-2xl"
             >
               Hakuna Matata
             </motion.h1>
@@ -64,8 +167,8 @@ export default function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-xl md:text-2xl lg:text-3xl mb-3 text-yellow-300 font-medium"
+              transition={{ delay: 0.5 }}
+              className="text-2xl md:text-3xl lg:text-4xl mb-4 text-yellow-300 font-bold drop-shadow-lg"
             >
               Cuidado Profesional para tu Mascota
             </motion.p>
@@ -73,8 +176,8 @@ export default function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="text-sm md:text-base mb-6 text-white max-w-xl"
+              transition={{ delay: 0.7 }}
+              className="text-base md:text-lg lg:text-xl mb-8 text-white max-w-2xl drop-shadow-lg"
             >
               Servicios veterinarios de calidad con amor y dedicación. Tu mascota merece lo mejor, y en Hakuna Matata nos aseguramos de que reciba el cuidado excepcional que necesita.
             </motion.p>
@@ -82,23 +185,23 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-3 mb-6"
+              transition={{ delay: 0.9 }}
+              className="flex flex-col sm:flex-row gap-4 mb-8"
             >
               <a
                 href="#cita"
-                className="bg-white text-emerald-600 px-6 py-3 rounded-full font-bold text-sm md:text-base hover:bg-emerald-50 transition-all hover:scale-105 shadow-2xl hover:shadow-emerald-500/50 flex items-center justify-center gap-2 group"
+                className="bg-white text-emerald-600 px-8 py-4 rounded-full font-bold text-base md:text-lg hover:bg-emerald-50 transition-all hover:scale-105 shadow-2xl hover:shadow-emerald-500/50 flex items-center justify-center gap-2 group"
               >
                 <span>Agenda tu Cita</span>
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </a>
               <a
                 href="tel:9242105259"
-                className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-full font-bold text-sm md:text-base hover:bg-white hover:text-emerald-600 transition-all hover:scale-105 shadow-lg flex items-center justify-center gap-2"
+                className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-full font-bold text-base md:text-lg hover:bg-white hover:text-emerald-600 transition-all hover:scale-105 shadow-lg flex items-center justify-center gap-2"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
                 <span>924 210 5259</span>
@@ -109,63 +212,22 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-              className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/20"
+              transition={{ delay: 1.1 }}
+              className="grid grid-cols-3 gap-6 max-w-xl bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
             >
               <div className="text-center">
-                <div className="text-xl md:text-3xl font-bold mb-1">5.0</div>
-                <div className="text-xs md:text-sm text-white">Calificación</div>
+                <div className="text-2xl md:text-4xl font-bold mb-1 drop-shadow-lg">5.0</div>
+                <div className="text-xs md:text-sm text-white/90">Calificación</div>
+              </div>
+              <div className="text-center border-x border-white/20">
+                <div className="text-2xl md:text-4xl font-bold mb-1 drop-shadow-lg">300+</div>
+                <div className="text-xs md:text-sm text-white/90">Mascotas Felices</div>
               </div>
               <div className="text-center">
-                <div className="text-xl md:text-3xl font-bold mb-1">300+</div>
-                <div className="text-xs md:text-sm text-white">Mascotas Felices</div>
-              </div>
-              <div className="text-center">
-                <div className="text-xl md:text-3xl font-bold mb-1">24/7</div>
-                <div className="text-xs md:text-sm text-white">Atención</div>
+                <div className="text-2xl md:text-4xl font-bold mb-1 drop-shadow-lg">24/7</div>
+                <div className="text-xs md:text-sm text-white/90">Atención</div>
               </div>
             </motion.div>
-          </motion.div>
-
-          {/* Right Animation */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative hidden lg:block"
-          >
-            <div className="relative w-full h-[500px] xl:h-[600px]">
-              {/* Decorative circle */}
-              <div className="absolute inset-0 bg-white/10 rounded-full blur-2xl"></div>
-              
-              {/* Lottie Animation */}
-              <div className="relative w-full h-full flex items-center justify-center">
-                {animationData ? (
-                  <Lottie
-                    animationData={animationData}
-                    loop={true}
-                    className="w-full h-full"
-                  />
-                ) : (
-                  <motion.div
-                    animate={{
-                      y: [0, -20, 0],
-                      rotate: [0, 5, -5, 0],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                    className="text-white text-center"
-                  >
-                    <div className="text-9xl mb-4 filter drop-shadow-2xl">🐾</div>
-                    <div className="text-8xl mb-4">🐕</div>
-                    <div className="text-8xl">🐈</div>
-                  </motion.div>
-                )}
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>
@@ -175,7 +237,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:block"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 hidden md:block"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
@@ -183,9 +245,9 @@ export default function Hero() {
           className="text-white text-center cursor-pointer"
           onClick={() => document.getElementById('nosotros')?.scrollIntoView({ behavior: 'smooth' })}
         >
-          <p className="mb-2 text-sm font-medium">Desliza hacia abajo</p>
+          <p className="mb-2 text-sm font-medium drop-shadow-lg">Desliza hacia abajo</p>
           <svg
-            className="w-6 h-6 mx-auto"
+            className="w-6 h-6 mx-auto drop-shadow-lg"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
