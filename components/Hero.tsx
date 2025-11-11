@@ -103,12 +103,15 @@ export default function Hero() {
         )}
       </div>
 
+      {/* Extra mobile overlay for better readability */}
+      <div className="absolute inset-0 bg-black/60 sm:hidden pointer-events-none"></div>
+
       {/* Navigation Arrows */}
       {images.length > 1 && (
         <>
           <button
             onClick={goToPrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
+            className="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
             aria-label="Previous image"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,7 +120,7 @@ export default function Hero() {
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
+            className="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
             aria-label="Next image"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -129,7 +132,7 @@ export default function Hero() {
 
       {/* Carousel Indicators */}
       {images.length > 1 && (
-        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        <div className="hidden sm:flex absolute bottom-24 left-1/2 -translate-x-1/2 z-20 gap-2">
           {images.map((_, index) => (
             <button
               key={index}
@@ -146,7 +149,7 @@ export default function Hero() {
       )}
 
       {/* Content Overlay */}
-      <div className="container mx-auto px-4 py-8 relative z-10 h-full flex items-center">
+      <div className="container mx-auto px-4 py-6 sm:py-8 relative z-10 h-full flex items-center">
         <div className="w-full max-w-4xl">
           {/* Content */}
           <motion.div
@@ -186,11 +189,11 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 }}
-              className="flex flex-col sm:flex-row gap-4 mb-8"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8"
             >
               <a
                 href="#cita"
-                className="bg-white text-emerald-600 px-8 py-4 rounded-full font-bold text-base md:text-lg hover:bg-emerald-50 transition-all hover:scale-105 shadow-2xl hover:shadow-emerald-500/50 flex items-center justify-center gap-2 group"
+                className="bg-white text-emerald-600 px-7 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-base md:text-lg hover:bg-emerald-50 transition-all hover:scale-105 shadow-2xl hover:shadow-emerald-500/50 flex items-center justify-center gap-2 group"
               >
                 <span>Agenda tu Cita</span>
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -199,7 +202,7 @@ export default function Hero() {
               </a>
               <a
                 href="tel:9242105259"
-                className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-full font-bold text-base md:text-lg hover:bg-white hover:text-emerald-600 transition-all hover:scale-105 shadow-lg flex items-center justify-center gap-2"
+                className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-7 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-base md:text-lg hover:bg-white hover:text-emerald-600 transition-all hover:scale-105 shadow-lg flex items-center justify-center gap-2"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
@@ -213,7 +216,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1 }}
-              className="grid grid-cols-3 gap-6 max-w-xl bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
+              className="grid grid-cols-3 gap-4 sm:gap-6 max-w-lg bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20"
             >
               <div className="text-center">
                 <div className="text-2xl md:text-4xl font-bold mb-1 drop-shadow-lg">5.0</div>
