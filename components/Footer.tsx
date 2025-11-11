@@ -1,7 +1,9 @@
-'use client';
+"use client";
 
 import Image from 'next/image';
 import Link from 'next/link';
+import Lottie from 'lottie-react';
+import pawsAnimation from '@/public/img/lottie/paws animation.json';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,6 +14,11 @@ export default function Footer() {
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500 rounded-full blur-3xl"></div>
+      </div>
+
+      {/* Animated paw trail */}
+      <div className="pointer-events-none absolute top-1/2 -translate-y-1/2 -right-6 z-0 w-56 h-56 md:w-80 md:h-80 opacity-80">
+        <Lottie animationData={pawsAnimation} loop className="w-full h-full scale-110 origin-top" />
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
