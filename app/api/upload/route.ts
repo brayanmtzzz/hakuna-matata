@@ -1,7 +1,11 @@
 import { NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import { join } from 'path';
-import { existsSync } from 'fs';
+import { createClient } from '@supabase/supabase-js';
+
+// Inicializar cliente de Supabase
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_KEY!
+);
 
 export async function POST(request: Request) {
   try {
@@ -42,22 +46,31 @@ export async function POST(request: Request) {
     const extension = file.name.split('.').pop();
     const filename = `service-${timestamp}.${extension}`;
 
-    // Crear directorio si no existe
-    const uploadDir = join(process.cwd(), 'public', 'img', 'servicios');
-    if (!existsSync(uploadDir)) {
-      await mkdir(uploadDir, { recursive: true });
+    // Subir a Supabase Storage
+    const { data, error } = await supabase.storage
+      .from('service-images')
+      .upload(filename, buffer, {
+        contentType: file.type,
+        cacheControl: '3600',
+        upsert: false
+      });
+
+    if (error) {
+      console.error('Error uploading to Supabase:', error);
+      return NextResponse.json(
+        { error: `Error al subir imagen: ${error.message}` },
+        { status: 500 }
+      );
     }
 
-    // Guardar archivo
-    const filepath = join(uploadDir, filename);
-    await writeFile(filepath, buffer);
-
-    // Retornar ruta relativa para usar en la base de datos
-    const relativePath = `/img/servicios/${filename}`;
+    // Obtener URL pública de la imagen
+    const { data: publicUrlData } = supabase.storage
+      .from('service-images')
+      .getPublicUrl(filename);
 
     return NextResponse.json({
       success: true,
-      path: relativePath,
+      path: publicUrlData.publicUrl,
       filename: filename
     });
 
