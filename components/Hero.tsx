@@ -61,13 +61,13 @@ export default function Hero() {
         {!isLoading && images.length > 0 && (
           <>
             {/* Base image - always visible */}
-            <div className="absolute inset-0 w-full h-full">
+            <div className="absolute inset-0 w-full h-full" style={{ minHeight: '100vh', minWidth: '100vw' }}>
               <Image
                 src={images[currentIndex]}
                 alt={`Hero image ${currentIndex + 1}`}
                 fill
                 priority
-                className="object-cover"
+                style={{ objectFit: 'cover' }}
                 sizes="100vw"
                 quality={90}
                 onLoadingComplete={() => setImageLoaded(true)}
@@ -85,13 +85,14 @@ export default function Hero() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.8, ease: 'easeInOut' }}
                 className="absolute inset-0 w-full h-full"
+                style={{ minHeight: '100vh', minWidth: '100vw' }}
               >
                 <Image
                   src={images[currentIndex]}
                   alt={`Hero image ${currentIndex + 1}`}
                   fill
                   priority={currentIndex === 0}
-                  className="object-cover"
+                  style={{ objectFit: 'cover' }}
                   sizes="100vw"
                   quality={90}
                 />

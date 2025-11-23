@@ -68,12 +68,12 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen relative flex items-center justify-center p-4 overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0" style={{ minHeight: '100vh', minWidth: '100vw' }}>
         <Image
           src="/img/admin/loginfondo.webp"
           alt="Background"
           fill
-          className="object-cover"
+          style={{ objectFit: 'cover' }}
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-[#154360]/50 backdrop-blur-sm"></div>
