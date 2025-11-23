@@ -9,9 +9,6 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Hakuna Matata - Veterinaria Profesional',
   description: 'Servicios veterinarios profesionales para el cuidado integral de tu mascota. Cirugías, vacunas, estética y más.',
-  icons: {
-    icon: '/img/logo/favicon.png',
-  },
 };
 
 export default function RootLayout({
