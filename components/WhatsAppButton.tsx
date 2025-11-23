@@ -2,9 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 export default function WhatsAppButton() {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
+
+  // No mostrar el botón en rutas admin
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
 
   useEffect(() => {
     const toggleVisibility = () => {
