@@ -84,6 +84,22 @@ export default function Hero() {
     };
   }, [images, currentIndex, firstLoad]);
 
+  useEffect(() => {
+    const active = Boolean(isLoading || (firstLoad && !imageLoaded));
+    try {
+      (window as any).__HM_PRELOADER_ACTIVE = active;
+      window.dispatchEvent(new CustomEvent('hm:preloader', { detail: active }));
+    } catch (e) {
+    }
+
+    return () => {
+      try {
+        (window as any).__HM_PRELOADER_ACTIVE = false;
+        window.dispatchEvent(new CustomEvent('hm:preloader', { detail: false }));
+      } catch (e) {}
+    };
+  }, [isLoading, firstLoad, imageLoaded]);
+
   return (
     <section id="inicio" className="relative h-screen w-full overflow-hidden bg-black">
       {/* Image Carousel Background */}

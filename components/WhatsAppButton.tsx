@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 export default function WhatsAppButton() {
   const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
+  const [preloaderActive, setPreloaderActive] = useState(false);
 
   // No mostrar el botón en rutas admin
   if (pathname?.startsWith('/admin')) {
@@ -23,8 +24,23 @@ export default function WhatsAppButton() {
     };
 
     window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    // initial preloader state
+    try {
+      setPreloaderActive(Boolean((window as any).__HM_PRELOADER_ACTIVE));
+    } catch (e) {}
+    // listen for preloader changes
+    const onPreloader = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      setPreloaderActive(Boolean(detail));
+    };
+    window.addEventListener('hm:preloader', onPreloader as EventListener);
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+      window.removeEventListener('hm:preloader', onPreloader as EventListener);
+    };
   }, []);
+
+  if (preloaderActive) return null; // hide while global preloader is active
 
   return (
     <AnimatePresence>
