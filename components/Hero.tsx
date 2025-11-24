@@ -2,13 +2,15 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import Lottie from 'lottie-react';
+import animalCareLoading from '@/public/img/lottie/Animal care Loading.json';
 
 export default function Hero() {
   const [images, setImages] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [firstLoad, setFirstLoad] = useState(true);
 
   useEffect(() => {
     // Fetch images from API
@@ -54,29 +56,41 @@ export default function Hero() {
     setCurrentIndex(index);
   };
 
+  // Preload current background image. Only toggle `imageLoaded` for the first page load
+  useEffect(() => {
+    if (!images || images.length === 0) return;
+    const img = new Image();
+    img.src = images[currentIndex];
+
+    if (firstLoad) {
+      setImageLoaded(false);
+      img.onload = () => {
+        setImageLoaded(true);
+        setFirstLoad(false);
+      };
+      img.onerror = () => {
+        setImageLoaded(true);
+        setFirstLoad(false);
+      };
+    } else {
+      // Preload silently for subsequent slides (don't affect `imageLoaded`)
+      img.onload = () => {};
+      img.onerror = () => {};
+    }
+
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
+  }, [images, currentIndex, firstLoad]);
+
   return (
     <section id="inicio" className="relative h-screen w-full overflow-hidden bg-black">
       {/* Image Carousel Background */}
       <div className="absolute inset-0 w-full h-full">
         {!isLoading && images.length > 0 && (
           <>
-            {/* Base image - always visible */}
-            <div className="absolute inset-0 w-full h-full" style={{ minHeight: '100vh', minWidth: '100vw' }}>
-              <Image
-                src={images[currentIndex]}
-                alt={`Hero image ${currentIndex + 1}`}
-                fill
-                priority
-                style={{ objectFit: 'cover' }}
-                sizes="100vw"
-                quality={90}
-                onLoadingComplete={() => setImageLoaded(true)}
-              />
-              {/* Dark overlay for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
-            </div>
-            
-            {/* Crossfade overlay */}
+            {/* Background crossfade using CSS backgrounds (avoids next/image layout-shift in production) */}
             <AnimatePresence initial={false}>
               <motion.div
                 key={currentIndex}
@@ -84,19 +98,9 @@ export default function Hero() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.8, ease: 'easeInOut' }}
-                className="absolute inset-0 w-full h-full"
-                style={{ minHeight: '100vh', minWidth: '100vw' }}
+                className="absolute inset-0 w-full h-full bg-center bg-cover"
+                style={{ backgroundImage: `url(${images[currentIndex]})` }}
               >
-                <Image
-                  src={images[currentIndex]}
-                  alt={`Hero image ${currentIndex + 1}`}
-                  fill
-                  priority={currentIndex === 0}
-                  style={{ objectFit: 'cover' }}
-                  sizes="100vw"
-                  quality={90}
-                />
-                {/* Dark overlay for better text readability */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
               </motion.div>
             </AnimatePresence>
@@ -104,7 +108,17 @@ export default function Hero() {
         )}
       </div>
 
-      {/* Dark overlay applied globally */}
+      {/* Preloader (full page): show the same loading screen as admin while the page finishes loading */}
+      {(isLoading || (firstLoad && !imageLoaded)) && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-[#F8F9F9] to-[#D5DBDB]">
+          <div className="flex flex-col items-center">
+            <Lottie animationData={animalCareLoading} loop={true} className="w-64 h-64" />
+            <p className="text-xl text-gray-600 font-semibold mt-4">Cargando...</p>
+          </div>
+        </div>
+      )}
+
+      {/* Dark overlay for hero (restored) */}
       <div className="absolute inset-0 bg-black/60 pointer-events-none"></div>
 
 
@@ -154,9 +168,11 @@ export default function Hero() {
       <div className="container mx-auto px-4 py-6 sm:py-8 relative z-10 h-full flex items-center">
         <div className="w-full max-w-4xl">
           {/* Content */}
+          {/** show content after images loaded initially; after first load keep content visible during slide changes */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: (!isLoading && imageLoaded) ? 1 : 0, y: (!isLoading && imageLoaded) ? 0 : 30 }}
+            // contentVisible is true when not loading and either initial image loaded or we've passed first load
+            animate={{ opacity: (!isLoading && (firstLoad ? imageLoaded : true)) ? 1 : 0, y: (!isLoading && (firstLoad ? imageLoaded : true)) ? 0 : 30 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-white"
           >
