@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white pt-16 pb-8 relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#7FB3D5] rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#A9DFBF] rounded-full blur-3xl"></div>
       </div>
@@ -35,8 +35,8 @@ export default function Footer() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-bold">Hakuna Matata</span>
-                <span className="text-sm text-[#A9DFBF]">Veterinaria Profesional</span>
+                <span className="text-2xl font-bold text-white">Hakuna Matata</span>
+                <span className="text-sm text-[#C8F5D7]">Veterinaria Profesional</span>
               </div>
             </div>
             <p className="text-white/90 mb-4 max-w-md">
@@ -71,25 +71,25 @@ export default function Footer() {
 
           {/* Enlaces rápidos */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-[#A9DFBF] pb-2 border-b-2 border-[#7FB3D5]/30 inline-block">Enlaces Rápidos</h3>
+            <h3 className="text-xl font-bold mb-4 text-[#C8F5D7] pb-2 border-b-2 border-[#7FB3D5]/30 inline-block">Enlaces Rápidos</h3>
             <ul className="space-y-2 text-white">
               <li>
-                <Link href="#inicio" className="text-white hover:text-[#A9DFBF] transition-colors hover:translate-x-1 inline-block">
+                <Link href="#inicio" className="text-white hover:text-[#C8F5D7] transition-colors hover:translate-x-1 inline-block">
                   Inicio
                 </Link>
               </li>
               <li>
-                <Link href="#nosotros" className="text-white hover:text-[#A9DFBF] transition-colors hover:translate-x-1 inline-block">
+                <Link href="#nosotros" className="text-white hover:text-[#C8F5D7] transition-colors hover:translate-x-1 inline-block">
                   Nosotros
                 </Link>
               </li>
               <li>
-                <Link href="#servicios" className="text-white hover:text-[#A9DFBF] transition-colors hover:translate-x-1 inline-block">
+                <Link href="#servicios" className="text-white hover:text-[#C8F5D7] transition-colors hover:translate-x-1 inline-block">
                   Servicios
                 </Link>
               </li>
               <li>
-                <Link href="#cita" className="text-white hover:text-[#A9DFBF] transition-colors hover:translate-x-1 inline-block">
+                <Link href="#cita" className="text-white hover:text-[#C8F5D7] transition-colors hover:translate-x-1 inline-block">
                   Agenda tu Cita
                 </Link>
               </li>
@@ -98,21 +98,21 @@ export default function Footer() {
 
           {/* Contacto */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-[#A9DFBF] pb-2 border-b-2 border-[#7FB3D5]/30 inline-block">Contacto</h3>
+            <h3 className="text-xl font-bold mb-4 text-[#C8F5D7] pb-2 border-b-2 border-[#7FB3D5]/30 inline-block">Contacto</h3>
             <ul className="space-y-2 text-white">
               <li className="flex items-start space-x-2">
                 <svg className="w-5 h-5 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
-                <a href="tel:9242105259" className="hover:text-[#A9DFBF] transition-colors" aria-label="Llamar al teléfono 924 210 5259">
+                <a href="tel:9242105259" className="hover:text-[#C8F5D7] transition-colors" aria-label="Llamar al teléfono 924 210 5259">
                   924 210 5259
                 </a>
               </li>
               <li className="flex items-start space-x-2">
-                <svg className="w-5 h-5 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5 mt-1 flex-shrink-0 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                 </svg>
-                <span>Coatzacoalcos, Veracruz</span>
+                <span className="text-white">Coatzacoalcos, Veracruz</span>
               </li>
             </ul>
           </div>
