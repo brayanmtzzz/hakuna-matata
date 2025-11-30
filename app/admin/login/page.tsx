@@ -67,7 +67,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen relative flex items-center justify-center p-4 overflow-hidden">
-      {/* Background Image (CSS background to avoid next/image layout-shift in production) */}
+      {/* Background Image */}
       <div
         className="absolute inset-0 z-0 bg-center bg-cover"
         style={{ backgroundImage: "url('/img/admin/loginfondo.webp')" }}

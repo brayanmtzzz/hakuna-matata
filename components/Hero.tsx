@@ -2,15 +2,10 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import Lottie from 'lottie-react';
-import animalCareLoading from '@/public/img/lottie/Animal care Loading.json';
 
 export default function Hero() {
   const [images, setImages] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [firstLoad, setFirstLoad] = useState(true);
 
   useEffect(() => {
     // Fetch images from API
@@ -20,16 +15,12 @@ export default function Hero() {
         const data = await res.json();
         if (data.images && data.images.length > 0) {
           setImages(data.images);
-          setIsLoading(false);
-        } else {
-          setIsLoading(false);
         }
       } catch (err) {
         console.error('Error loading hero images:', err);
-        setIsLoading(false);
       }
     };
-    
+
     loadImages();
   }, []);
 
@@ -56,53 +47,11 @@ export default function Hero() {
     setCurrentIndex(index);
   };
 
-  useEffect(() => {
-    if (!images || images.length === 0) return;
-    const img = new Image();
-    img.src = images[currentIndex];
-
-    if (firstLoad) {
-      setImageLoaded(false);
-      img.onload = () => {
-        setImageLoaded(true);
-        setFirstLoad(false);
-      };
-      img.onerror = () => {
-        setImageLoaded(true);
-        setFirstLoad(false);
-      };
-    } else {
-      img.onload = () => {};
-      img.onerror = () => {};
-    }
-
-    return () => {
-      img.onload = null;
-      img.onerror = null;
-    };
-  }, [images, currentIndex, firstLoad]);
-
-  useEffect(() => {
-    const active = Boolean(isLoading || (firstLoad && !imageLoaded));
-    try {
-      (window as any).__HM_PRELOADER_ACTIVE = active;
-      window.dispatchEvent(new CustomEvent('hm:preloader', { detail: active }));
-    } catch (e) {
-    }
-
-    return () => {
-      try {
-        (window as any).__HM_PRELOADER_ACTIVE = false;
-        window.dispatchEvent(new CustomEvent('hm:preloader', { detail: false }));
-      } catch (e) {}
-    };
-  }, [isLoading, firstLoad, imageLoaded]);
-
   return (
     <section id="inicio" className="relative h-screen w-full overflow-hidden bg-black">
       {/* Image Carousel Background */}
       <div className="absolute inset-0 w-full h-full">
-        {!isLoading && images.length > 0 && (
+        {images.length > 0 && (
           <>
             {/* Background crossfade using CSS backgrounds (avoids next/image layout-shift in production) */}
             <AnimatePresence initial={false}>
@@ -121,16 +70,6 @@ export default function Hero() {
           </>
         )}
       </div>
-
-      {/* Preloader */}
-      {(isLoading || (firstLoad && !imageLoaded)) && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-[#F8F9F9] to-[#D5DBDB]">
-          <div className="flex flex-col items-center">
-            <Lottie animationData={animalCareLoading} loop={true} className="w-64 h-64" />
-            <p className="text-xl text-gray-600 font-semibold mt-4">Cargando...</p>
-          </div>
-        </div>
-      )}
 
       {/* Dark overlay for hero */}
       <div className="absolute inset-0 bg-black/60 pointer-events-none"></div>
@@ -184,7 +123,7 @@ export default function Hero() {
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: (!isLoading && (firstLoad ? imageLoaded : true)) ? 1 : 0, y: (!isLoading && (firstLoad ? imageLoaded : true)) ? 0 : 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-white"
           >
