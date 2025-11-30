@@ -56,7 +56,6 @@ export default function Hero() {
     setCurrentIndex(index);
   };
 
-  // Preload current background image. Only toggle `imageLoaded` for the first page load
   useEffect(() => {
     if (!images || images.length === 0) return;
     const img = new Image();
@@ -73,7 +72,6 @@ export default function Hero() {
         setFirstLoad(false);
       };
     } else {
-      // Preload silently for subsequent slides (don't affect `imageLoaded`)
       img.onload = () => {};
       img.onerror = () => {};
     }
@@ -124,7 +122,7 @@ export default function Hero() {
         )}
       </div>
 
-      {/* Preloader (full page): show the same loading screen as admin while the page finishes loading */}
+      {/* Preloader */}
       {(isLoading || (firstLoad && !imageLoaded)) && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-[#F8F9F9] to-[#D5DBDB]">
           <div className="flex flex-col items-center">
@@ -134,7 +132,7 @@ export default function Hero() {
         </div>
       )}
 
-      {/* Dark overlay for hero (restored) */}
+      {/* Dark overlay for hero */}
       <div className="absolute inset-0 bg-black/60 pointer-events-none"></div>
 
 
@@ -181,13 +179,11 @@ export default function Hero() {
       )}
 
       {/* Content Overlay */}
-      <div className="container mx-auto px-4 py-6 sm:py-8 relative z-10 h-full flex items-center">
+      <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-8 relative z-10 h-full flex items-center">
         <div className="w-full max-w-4xl">
           {/* Content */}
-          {/** show content after images loaded initially; after first load keep content visible during slide changes */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            // contentVisible is true when not loading and either initial image loaded or we've passed first load
             animate={{ opacity: (!isLoading && (firstLoad ? imageLoaded : true)) ? 1 : 0, y: (!isLoading && (firstLoad ? imageLoaded : true)) ? 0 : 30 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-white"
@@ -196,25 +192,25 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 leading-tight drop-shadow-2xl"
+              className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-3 sm:mb-4 leading-tight drop-shadow-2xl"
             >
               Hakuna Matata
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="text-2xl md:text-3xl lg:text-4xl mb-4 text-[#A9DFBF] font-bold drop-shadow-lg"
+              className="text-lg sm:text-xl md:text-xl lg:text-2xl xl:text-3xl mb-3 sm:mb-4 text-[#A9DFBF] font-bold drop-shadow-lg"
             >
               Cuidado Profesional para tu Mascota
             </motion.p>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
-              className="text-base md:text-lg lg:text-xl mb-8 text-white max-w-2xl drop-shadow-lg"
+              className="text-sm sm:text-base md:text-base lg:text-lg xl:text-xl mb-6 sm:mb-8 text-white max-w-2xl drop-shadow-lg leading-relaxed"
             >
               Servicios veterinarios de calidad con amor y dedicación. Tu mascota merece lo mejor, y en Hakuna Matata nos aseguramos de que reciba el cuidado excepcional que necesita.
             </motion.p>
@@ -223,25 +219,25 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8"
+              className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-3 mb-5 sm:mb-6 md:mb-6"
             >
               <a
                 href="#cita"
-                className="bg-white text-[#154360] px-7 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-base md:text-lg hover:bg-[#F8F9F9] transition-all hover:scale-105 shadow-2xl hover:shadow-[#7FB3D5]/50 flex items-center justify-center gap-2 group"
+                className="bg-white text-[#154360] px-5 py-2.5 sm:px-7 sm:py-3 md:px-6 md:py-3 lg:px-7 lg:py-3.5 rounded-full font-bold text-sm sm:text-base md:text-base lg:text-base hover:bg-[#F8F9F9] transition-all hover:scale-105 shadow-2xl hover:shadow-[#7FB3D5]/50 flex items-center justify-center gap-2 group"
               >
                 <span>Agenda tu Cita</span>
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </a>
               <a
                 href="tel:9242105259"
-                className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-7 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-base md:text-lg hover:bg-white hover:text-[#154360] transition-all hover:scale-105 shadow-lg flex items-center justify-center gap-2"
+                className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-5 py-2.5 sm:px-7 sm:py-3 md:px-6 md:py-3 lg:px-7 lg:py-3.5 rounded-full font-bold text-sm sm:text-base md:text-base lg:text-base hover:bg-white hover:text-[#154360] transition-all hover:scale-105 shadow-lg flex items-center justify-center gap-2"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
-                <span>924 210 5259</span>
+                <span className="text-sm sm:text-base md:text-base lg:text-base">924 210 5259</span>
               </a>
             </motion.div>
             
@@ -250,19 +246,19 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1 }}
-              className="grid grid-cols-3 gap-4 sm:gap-6 max-w-lg bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20"
+              className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-4 lg:gap-5 max-w-lg bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-4 lg:p-5 border border-white/20"
             >
               <div className="text-center">
-                <div className="text-2xl md:text-4xl font-bold mb-1 drop-shadow-lg">5.0</div>
-                <div className="text-xs md:text-sm text-white/90">Calificación</div>
+                <div className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-0.5 sm:mb-1 drop-shadow-lg">5.0</div>
+                <div className="text-[10px] sm:text-xs md:text-xs lg:text-sm text-white/90 leading-tight">Calificación</div>
               </div>
               <div className="text-center border-x border-white/20">
-                <div className="text-2xl md:text-4xl font-bold mb-1 drop-shadow-lg">300+</div>
-                <div className="text-xs md:text-sm text-white/90">Mascotas Felices</div>
+                <div className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-0.5 sm:mb-1 drop-shadow-lg">300+</div>
+                <div className="text-[10px] sm:text-xs md:text-xs lg:text-sm text-white/90 leading-tight">Mascotas Felices</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-4xl font-bold mb-1 drop-shadow-lg">24/7</div>
-                <div className="text-xs md:text-sm text-white/90">Atención</div>
+                <div className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-0.5 sm:mb-1 drop-shadow-lg">24/7</div>
+                <div className="text-[10px] sm:text-xs md:text-xs lg:text-sm text-white/90 leading-tight">Atención</div>
               </div>
             </motion.div>
           </motion.div>
