@@ -262,8 +262,7 @@ export default function Appointment() {
             <div className="rounded-3xl overflow-hidden shadow-2xl flex-1 min-h-[400px] lg:min-h-0">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d236.96590328614!2d-94.52867358834325!3d18.14296740000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85e985007988a1c5%3A0xa25f3d03a21bee88!2sHakuna%20matata!5e0!3m2!1ses-419!2smx!4v1762715495494!5m2!1ses-419!2smx"
-                width="100%"
-                height="100%"
+                className="w-full h-full"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"

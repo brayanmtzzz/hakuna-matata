@@ -1,6 +1,6 @@
 # Hakuna Matata - Veterinaria
 
-Plataforma web moderna y profesional para la **Clínica Veterinaria Hakuna Matata**, diseñada para gestionar y presentar servicios veterinarios con autenticación de usuarios y administración de contenidos. Construida con tecnologías actuales para ofrecer una experiencia fluida, segura y responsive que mejore la comunicación con nuestros clientes y optimice la gestión interna de la clínica.
+Plataforma web para la **Clínica Veterinaria Hakuna Matata** que presenta información institucional de la clínica, catálogo de servicios veterinarios y permite gestionar contenido de forma dinámica mediante un panel administrativo. Implementa autenticación de usuarios, almacenamiento en la nube, y diseño responsivo optimizado para dispositivos móviles y desktop.
 
 ## Equipo
 
@@ -9,7 +9,7 @@ Plataforma web moderna y profesional para la **Clínica Veterinaria Hakuna Matat
 
 ## Descripción del Proyecto
 
-**Hakuna Matata** es una aplicación web fullstack profesional diseñada específicamente para la gestión y administración de una clínica veterinaria. La plataforma permite a los veterinarios y personal administrativo gestionar eficientemente los servicios ofrecidos, mientras que los clientes pueden consultar y conocer los tratamientos disponibles.
+Aplicación web fullstack construida con Next.js 16 que presenta información de la clínica y permite la gestión integral de servicios veterinarios. Incluye un sistema de autenticación basado, CRUD completo de servicios, y almacenamiento de imágenes en la nube, proporcionando una solución completa para la presentación institucional y administración de contenidos.
 
 ### Funcionalidades Principales
 
@@ -21,12 +21,11 @@ Plataforma web moderna y profesional para la **Clínica Veterinaria Hakuna Matat
 
 ## Requisitos Previos
 
-Antes de instalar el proyecto, asegúrate de tener los siguientes requisitos:
+Requisitos necesarios antes de la instalación:
 
 - **Node.js**: Versión 18 o superior ([descargar aquí](https://nodejs.org/))
 - **npm**: Incluido con Node.js
-- **PostgreSQL**: Base de datos relacional ([instrucciones de instalación](https://www.postgresql.org/download/))
-- **Cuenta de Supabase**: Para almacenamiento de imágenes ([crear cuenta](https://supabase.com/))
+- **Cuenta de Supabase**: Para base de datos PostgreSQL y almacenamiento de imágenes ([crear cuenta](https://supabase.com/))
 
 ## Instalación
 
@@ -45,20 +44,14 @@ npm install
 
 ### 3. Configurar Variables de Entorno
 
-Crea un archivo `.env.local` en la raíz del proyecto con las siguientes variables:
+Crear un archivo `.env` en la raíz del proyecto con las siguientes variables:
 
 ```env
-# Base de Datos - PostgreSQL
-DATABASE_URL=postgresql://usuario:contraseña@localhost:5432/hakuna_matata_vet
-
-# Supabase - Almacenamiento en la nube para imágenes de servicios
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-
-# NextAuth - Autenticación y gestión de sesiones
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=tu-secret-seguro-aqui-genera-uno-aleatorio
+DATABASE_URL=
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=
+SUPABASE_URL=
+SUPABASE_KEY=
 ```
 
 ### 4. Configurar la Base de Datos
@@ -110,12 +103,10 @@ npm start
 - **NextAuth 4**: Autenticación y gestión de sesiones
 - **Prisma 6**: ORM moderno para PostgreSQL
 
-### Base de Datos
-- **PostgreSQL**: Base de datos relacional
-- **Prisma Client**: Acceso a datos tipado
-
-### Almacenamiento
-- **Supabase Storage**: Almacenamiento de archivos en la nube
+### Base de Datos y Almacenamiento
+- **Supabase PostgreSQL**: Base de datos relacional gestionada en la nube
+- **Prisma Client**: ORM para acceso a datos tipado y seguro
+- **Supabase Storage**: Almacenamiento de imágenes y archivos en la nube
 
 ### Validación
 - **Zod**: Validación de esquemas TypeScript-first
@@ -173,29 +164,29 @@ hakuna-matata/
 
 ### Bifurcar el Repositorio
 
-1. Haz clic en "Fork" en la esquina superior derecha
-2. Clona tu repositorio bifurcado
-3. Crea una rama para tu feature: `git checkout -b feature/mi-feature`
-4. Realiza tus cambios y commits
-5. Haz push a tu rama: `git push origin feature/mi-feature`
-6. Abre un Pull Request
+1. Hacer clic en "Fork" en la esquina superior derecha
+2. Clonar el repositorio bifurcado
+3. Crear una rama para la feature: `git checkout -b feature/mi-feature`
+4. Realizar los cambios y commits
+5. Hacer push a la rama: `git push origin feature/mi-feature`
+6. Abrir un Pull Request
 
 ### Buenas Prácticas
 
-- Usa TypeScript: Mantén tipado seguro todo el código
-- Sigue la estructura del proyecto: Respeta las carpetas establecidas
-- Prueba localmente: Verifica que todo funcione antes de hacer PR
-- Mensajes de commit claros: Describe qué cambios realizas
-- Respeta ESLint: Ejecuta `npm run lint` antes de hacer push
+- Utilizar TypeScript: Mantener tipado seguro todo el código
+- Seguir la estructura del proyecto: Respetar las carpetas establecidas
+- Probar localmente: Verificar que todo funcione antes de hacer PR
+- Mensajes de commit claros: Describir qué cambios se realizan
+- Respetar ESLint: Ejecutar `npm run lint` antes de hacer push
 
 ## Despliegue
 
 La aplicación se puede desplegar en plataformas como:
 
-- **Vercel**: [Guía de despliegue](https://nextjs.org/docs/deployment)
-- **Railway**: Base de datos PostgreSQL incluida
-- **Heroku**: Requiere configuración adicional
-- **AWS/Azure**: Máquinas virtuales o contenedores
+- **Vercel**: Plataforma recomendada para Next.js ([Guía de despliegue](https://nextjs.org/docs/deployment))
+- **Railway**: Despliegue simplificado con integración continua
+- **Netlify**: Alternativa con funciones serverless
+- **AWS/Azure**: Despliegue en infraestructura personalizada
 
 ## Recursos Útiles
 

@@ -42,5 +42,7 @@ next-env.d.ts
 
 /app/generated/prisma
 
-CLAUDE.md
+*.md
 /.claude
+*.pdf
+!README.md

@@ -111,7 +111,7 @@ export default function Navbar() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden focus:outline-none"
           >
-            <div className="space-y-1.5">
+            <span className="flex flex-col gap-1.5">
               <span
                 className={`block w-6 h-0.5 transition-all ${
                   isScrolled ? 'bg-gray-800' : 'bg-white'
@@ -127,7 +127,7 @@ export default function Navbar() {
                   isScrolled ? 'bg-gray-800' : 'bg-white'
                 } ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
               ></span>
-            </div>
+            </span>
           </button>
         </div>
 
