@@ -112,6 +112,12 @@ npm start
 - **Zod**: Validación de esquemas TypeScript-first
 - **bcrypt**: Hash seguro de contraseñas
 
+### Testing
+- **Vitest**: Framework de testing moderno y rápido
+- **React Testing Library**: Testing de componentes React
+- **Happy DOM**: Entorno DOM para pruebas
+- **MSW**: Mock Service Worker para interceptar requests
+
 ## Estructura del Proyecto
 
 ```
@@ -133,12 +139,21 @@ hakuna-matata/
 
 ## Scripts Disponibles
 
+### Desarrollo
 - `npm run dev`: Inicia servidor de desarrollo
 - `npm run build`: Crea build optimizado para producción
 - `npm start`: Ejecuta la aplicación en modo producción
 - `npm run lint`: Ejecuta análisis de código (ESLint)
+
+### Base de Datos
 - `npm run db:generate`: Genera cliente de Prisma
 - `npm run db:seed`: Ejecuta script de semilla de datos
+
+### Testing
+- `npm test`: Ejecuta todas las pruebas
+- `npm run test:watch`: Ejecuta pruebas en modo watch
+- `npm run test:ui`: Abre interfaz visual de Vitest
+- `npm run test:coverage`: Genera reporte de cobertura
 
 ## Modelo de Datos
 
@@ -160,6 +175,27 @@ hakuna-matata/
 - **createdAt**: Fecha de creación del registro
 - **updated_at**: Fecha de última actualización
 
+## Testing
+
+El proyecto cuenta con una suite completa de pruebas automatizadas:
+
+- **28 pruebas** cubriendo API Routes y componentes React
+- **Tests unitarios** para funcionalidad crítica
+- **Tests de integración** para API endpoints
+
+### Ejecutar Pruebas
+
+```bash
+# Ejecutar todas las pruebas
+npm test
+
+# Modo watch para desarrollo
+npm run test:watch
+
+# Generar reporte de cobertura
+npm run test:coverage
+```
+
 ## Desarrollo y Contribuciones
 
 ### Bifurcar el Repositorio
@@ -173,11 +209,12 @@ hakuna-matata/
 
 ### Buenas Prácticas
 
-- Utilizar TypeScript: Mantener tipado seguro todo el código
-- Seguir la estructura del proyecto: Respetar las carpetas establecidas
-- Probar localmente: Verificar que todo funcione antes de hacer PR
-- Mensajes de commit claros: Describir qué cambios se realizan
-- Respetar ESLint: Ejecutar `npm run lint` antes de hacer push
+- **Utilizar TypeScript**: Mantener tipado seguro todo el código
+- **Seguir la estructura del proyecto**: Respetar las carpetas establecidas
+- **Escribir tests**: Agregar pruebas para nueva funcionalidad
+- **Probar localmente**: Verificar que todo funcione antes de hacer PR
+- **Mensajes de commit claros**: Describir qué cambios se realizan
+- **Respetar ESLint**: Ejecutar `npm run lint` antes de hacer push
 
 ## Despliegue
 
